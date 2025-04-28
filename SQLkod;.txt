@@ -1,0 +1,51 @@
+CREATE DATABASE reseplanerare;
+
+USE reseplanerare;
+
+CREATE TABLE resor(
+    resorId INT NOT NULL AUTO_INCREMENT UNIQUE,
+    resorLand VARCHAR(50) NOT NULL ,
+    resorDatum DATE NOT NULL,
+    resaLängd INT NOT NULL ,
+    resorPris INT NOT NULL,
+    PRIMARY KEY (resorId)
+);
+
+CREATE TABLE destination(
+    destinationId INT NOT NULL AUTO_INCREMENT UNIQUE,
+    destinationNamn VARCHAR(50),
+    destinationHotell VARCHAR(50),
+    PRIMARY KEY (destinationId),
+    FOREIGN KEY (destinationId) REFERENCES resor(resorId)
+);
+
+CREATE TABLE användare(
+    användarId INT NOT NULL AUTO_INCREMENT UNIQUE ,
+    användarNamn VARCHAR(50) NOT NULL,
+    användarEpost VARCHAR(50) NOT NULL,
+    PRIMARY KEY (användarId)
+);
+
+CREATE TABLE bokningar(
+    bokningId INT NOT NULL AUTO_INCREMENT UNIQUE,
+    bokningAntalPlatser INT NOT NULL,
+    bokningAnvändarId INT NOT NULL ,
+    bokningResorId INT NOT NULL ,
+    PRIMARY KEY (bokningId),
+    FOREIGN KEY (bokningAnvändarId) REFERENCES användare(användarId),
+    FOREIGN KEY (bokningResorId) REFERENCES resor(resorId)
+);
+
+INSERT INTO resor(resorLand, resorDatum, resorPris)
+VALUES ("Sverige", 20250323, 2094);
+
+
+-- SELECTSATSER HÄR
+SELECT * FROM resor;
+
+
+-- DROP TABLE HÄR I ORDNING
+DROP TABLE resor;
+DROP TABLE destination;
+DROP TABLE användare;
+DROP TABLE bokningar;
