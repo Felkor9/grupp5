@@ -49,3 +49,32 @@ exports.createResor = (async(req, res) => {
       });
   }
 });
+
+
+exports.updateResor = async (req, res) => {
+    try {
+        const resorId = req.params.id;
+        const resorData = req.body;
+
+        // Kontrollera att namn och plats finns
+        if (!resorData.resorLand || !resorData.resorDatum || !resorData.resaLangd || !resorData.resorPris) {
+            return res.status(400).json({ message: 'Alla värden måste anges' });
+        }
+
+        const updatedResor = await resorService.updateResor(resorId, resorData);
+        res.json(updatedResor);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+
+exports.deleteResa = async (req, res) => {
+    try {
+        const resorId = req.params.id;
+        const deleted = await resorService.deleteResa(resorId);
+        res.json(deleted);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
