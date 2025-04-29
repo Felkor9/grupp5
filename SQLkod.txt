@@ -20,20 +20,20 @@ CREATE TABLE destination(
     FOREIGN KEY (destinationResorId) REFERENCES resor(resorId)
 );
 
-CREATE TABLE användare(
-    användarId INT NOT NULL AUTO_INCREMENT UNIQUE ,
-    användarNamn VARCHAR(50) NOT NULL,
-    användarEpost VARCHAR(50) NOT NULL,
-    PRIMARY KEY (användarId)
+CREATE TABLE user(
+    userId INT NOT NULL AUTO_INCREMENT UNIQUE ,
+    userName VARCHAR(50) NOT NULL,
+    userEmail VARCHAR(50) NOT NULL,
+    PRIMARY KEY (userId)
 );
 
 CREATE TABLE bokningar(
     bokningId INT NOT NULL AUTO_INCREMENT UNIQUE,
     bokningAntalPlatser INT NOT NULL,
-    bokningAnvändarId INT NOT NULL ,
+    bokningUserId INT NOT NULL ,
     bokningResorId INT NOT NULL ,
     PRIMARY KEY (bokningId),
-    FOREIGN KEY (bokningAnvändarId) REFERENCES användare(användarId),
+    FOREIGN KEY (bokningUserId) REFERENCES user(userId),
     FOREIGN KEY (bokningResorId) REFERENCES resor(resorId)
 );
 
@@ -48,5 +48,5 @@ SELECT * FROM resor;
 -- DROP TABLE HÄR I ORDNING
 DROP TABLE resor;
 DROP TABLE destination;
-DROP TABLE användare;
+DROP TABLE user;
 DROP TABLE bokningar;
