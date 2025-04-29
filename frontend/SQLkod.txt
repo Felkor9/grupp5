@@ -6,7 +6,7 @@ CREATE TABLE resor(
     resorId INT NOT NULL AUTO_INCREMENT UNIQUE,
     resorLand VARCHAR(50) NOT NULL ,
     resorDatum DATE NOT NULL,
-    resaLängd INT NOT NULL ,
+    resorLangd INT NOT NULL ,
     resorPris INT NOT NULL,
     PRIMARY KEY (resorId)
 );
@@ -36,8 +36,8 @@ CREATE TABLE bokningar(
     FOREIGN KEY (bokningResorId) REFERENCES resor(resorId)
 );
 
-INSERT INTO resor(resorLand, resorDatum, resorPris)
-VALUES ("Sverige", 20250323, 2094);
+INSERT INTO resor(resorLand, resorDatum, resorLangd, resorPris)
+VALUES ('Sverige', 20250323, 1, 2094);
 
 
 -- SELECTSATSER HÄR
