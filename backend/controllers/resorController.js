@@ -26,21 +26,21 @@ exports.getResa = (async(req, res) => {
 });
 
 exports.createResor = (async(req, res) => {
-  const { resorLand, resorDatum, resaLangd, resorPris} = req.body;
+  const { resorLand, resorDatum, resorLangd, resorPris} = req.body;
 
-  if (!resorLand || !resorDatum || !resaLangd || !resorPris) {
+  if (!resorLand || !resorDatum || !resorLangd || !resorPris) {
       return res.status(400).json({
           success: false,
-          error: 'Du har inte fyllt i fälten korrekt',
+          error: 'Du har inte fyllt i fälten korrekt.',
       });
   }
 
   try{
-      await resorService.createResor(resorLand, resorDatum, resaLangd, resorPris);
+      await resorService.createResor(resorLand, resorDatum, resorLangd, resorPris);
       return res.status(201).json({
           success: true,
           error: '',
-          message: 'Du har lagt till en ny resa'
+          message: 'Du har lagt till en ny resa.'
       });
   }catch(error){
       return res.status(500).json({

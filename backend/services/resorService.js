@@ -24,10 +24,10 @@ function getResa(id) {
   });
 }
 
-function createResor(resorLand, resorDatum, resaLangd, resorPris){
+function createResor(resorLand, resorDatum, resorLangd, resorPris){
   return new Promise((resolve, reject)=>{
-      let sql= 'INSERT INTO resor (resorLand, resorDatum, resaLangd, resorPris) VALUES (?,?,?,?)'
-      let params = [resorLand, resorDatum, resaLangd, resorPris]
+      let sql= 'INSERT INTO resor (resorLand, resorDatum, resorLangd, resorPris) VALUES (?,?,?,?)'
+      let params = [resorLand, resorDatum, resorLangd, resorPris]
 
       connectionMySQL.query(sql,params, (err)=>{
           if(err)
