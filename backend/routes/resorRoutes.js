@@ -3,9 +3,9 @@ const router=express.Router()
 const resorController=require('./../controllers/resorController')
 
 router.get('/resor', resorController.getResor)
+router.get('/resor/:id', resorController.getResa)
+router.post('/resor', resorController.createResor)
 
-// // router.get('/seeds/:id', seedController.getSeed)
-// router.post('/seeds', seedController.createSeed)
 // router.put('/seeds', seedController.updateSeed)
 // router.delete('/seeds/:id', seedController.deleteSeed)
 // // router.get('/seeds/count', seedController.countSeeds)
