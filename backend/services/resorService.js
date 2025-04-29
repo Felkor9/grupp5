@@ -24,10 +24,10 @@ function getResa(id) {
   });
 }
 
-function createResor(resorLand, resorDatum, resaLangd, resorPris){
+function createResor(resorLand, resorDatum, resorLangd, resorPris){
   return new Promise((resolve, reject)=>{
-      let sql= 'INSERT INTO resor (resorLand, resorDatum, resaLangd, resorPris) VALUES (?,?,?,?)'
-      let params = [resorLand, resorDatum, resaLangd, resorPris]
+      let sql= 'INSERT INTO resor (resorLand, resorDatum, resorLangd, resorPris) VALUES (?,?,?,?)'
+      let params = [resorLand, resorDatum, resorLangd, resorPris]
 
       connectionMySQL.query(sql,params, (err)=>{
           if(err)
@@ -36,10 +36,34 @@ function createResor(resorLand, resorDatum, resaLangd, resorPris){
           resolve()
       })
   })
+};
+
+
+function updateResor(resorId, data) {
+    return new Promise((resolve, reject) => {
+        const sql = 'UPDATE resor SET resorLand = ?, resorDatum = ?, resaLangd = ?, resorPris = ? WHERE resorId = ?';
+        const values = [data.resorLand, data.resorDatum, data.resaLangd, data.resorPris, resorId];
+        connectionMySQL.query(sql, values, (err, result) => {
+            if (err) reject(err);
+            else resolve({ resorId, ...data });
+        });
+    });
+};
+
+function deleteResa(resorId) {
+    return new Promise((resolve, reject) => {
+        const sql = 'DELETE FROM resor WHERE resorId = ?';
+        connectionMySQL.query(sql, [resorId], (err, result) => {
+            if (err) reject(err);
+            else resolve({ message: 'Resa borttagen', resorId });
+        });
+    });
 }
 
 module.exports={
-  getResor,
-  getResa,
-  createResor
+    getResor,
+    getResa,
+    createResor,
+    updateResor,
+    deleteResa,
 }
