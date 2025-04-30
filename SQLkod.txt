@@ -1,7 +1,8 @@
-CREATE DATABASE reseplanerare;
-
+-- SKAPA DATABAS
+CREATE DATABASE IF NOT EXISTS reseplanerare;
 USE reseplanerare;
 
+-- SKAPA TABELLER
 CREATE TABLE resor(
     resorId INT NOT NULL AUTO_INCREMENT UNIQUE,
     resorLand VARCHAR(50) NOT NULL ,
@@ -37,30 +38,27 @@ CREATE TABLE bokningar(
     FOREIGN KEY (bokningResorId) REFERENCES resor(resorId)
 );
 
+
+-- LÄGG TIll DATA
 INSERT INTO resor(resorLand, resorDatum, resorLangd, resorPris)
 VALUES ('Sverige', 20250323, 1, 2000);
 
-
 INSERT INTO user(userName, userEmail)
 VALUES ('Evelina Jonasson', 'evelina.jonasson@iths.se'), ('Elin Eriksson', 'elin.eriksson@iths.se'), ('Linn Lihnell', 'linn.lihnell@iths.se'), ('Felix Korshavn', 'felix.korshavn@iths.se'), ('Jerry Johansson', 'jerry.johansson@iths.se')
-=======
+
 INSERT INTO destination(destinationStad, destinationHotell, destinationResorId)
 VALUES ('Malmö', "Scandic Malmö", 1);
 
 INSERT INTO bokningar(bokningAntalPlatser, bokningResorId, bokningUserId)
 VALUES (3, 1, 1);
 
-
 -- SELECTSATSER HÄR
 SELECT * FROM resor;
 SELECT * FROM user;
-=======
 SELECT * FROM destination;
 SELECT * FROM bokningar;
 
--- INNER JOIN bokning - user - resor - destination
-
-
+-- INNER JOIN (bokning - user - resor - destination)
 SELECT
     bokningar.bokningAntalPlatser,
     user.userName,
@@ -72,8 +70,16 @@ INNER JOIN user ON bokningar.bokningUserId = user.userId
 INNER JOIN destination ON resor.resorId = destination.destinationResorId
 WHERE userId = 1;
 
+-- INNER JOIN (resa - destination - hotell)
+SELECT
+    resor.resorLand,
+    destination.destinationStad,
+    destination.destinationHotell
+FROM resor
+INNER JOIN destination ON resor.resorId = destination.destinationResorId
+WHERE resor.resorId = 1;
 
--- DROP TABLE HÄR I ORDNING
+-- DROP TABLE HÄR
 DROP TABLE resor;
 DROP TABLE destination;
 DROP TABLE user;
