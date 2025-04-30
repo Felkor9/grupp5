@@ -37,7 +37,7 @@ CREATE TABLE bokningar(
     FOREIGN KEY (bokningResorId) REFERENCES resor(resorId)
 );
 
-INSERT INTO resor(resorLand, resorDatum, resaLangd, resorPris)
+INSERT INTO resor(resorLand, resorDatum, resorLangd, resorPris)
 VALUES ('Sverige', 20250323, 1, 2000);
 
 

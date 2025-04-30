@@ -11,8 +11,12 @@ app.use(express.urlencoded({extended:true}))
 app.use(cors())
 app.use(express.static('public'))
 
-const resorRoutes=require('./routes/resorRoutes')
+const resorRoutes = require('./routes/resorRoutes')
+
+const bokningarRoutes = require('./routes/bokningarRoutes')
 
 app.use(resorRoutes)
+
+app.use(bokningarRoutes)
 
 app.listen(port,()=>console.log(`Example listening on port ${port}`))
