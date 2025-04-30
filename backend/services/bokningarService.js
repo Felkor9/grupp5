@@ -20,6 +20,16 @@ function getBokning(id) {
   });
 }
 
+function getBokningKlar(id) {
+  return new Promise((resolve, reject) => {
+    let sql = "SELECT bokningar.bokningAntalPlatser, user.userName, resor.resorLand, destination.destinationStad FROM bokningar INNER JOIN resor ON bokningar.bokningResorId = resor.resorId INNER JOIN user ON bokningar.bokningUserId = user.userId INNER JOIN destination ON resor.resorId = destination.destinationResorId WHERE userId = ?;";
+    connectionMySQL.query(sql, [id], (err, rows) => {
+      if (err) reject(err);
+      else resolve(rows);
+    });
+  });
+}
+
 function createBokning(bokningAntalPlatser) {
   return new Promise((resolve, reject) => {
     let sql = "INSERT INTO bokningar (bokningarAntalPlatser) VALUES (?)";
@@ -63,4 +73,5 @@ module.exports = {
   createBokning,
   updateBokning,
   deleteBokning,
+  getBokningKlar
 };

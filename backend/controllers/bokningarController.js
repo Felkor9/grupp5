@@ -24,7 +24,20 @@ exports.getBokning = async (req, res) => {
   }
 };
 
-exports.createBokningar = async (req, res) => {
+exports.getBokningKlar = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const bokning = await bokningService.getBokningKlar(id);
+    res.json({ bokning });
+  } catch (error) {
+    return res.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
+exports.createBokning = async (req, res) => {
   const { bokningAntalPlatser } = req.body;
 
   if (!bokningAntalPlatser) {
@@ -35,7 +48,7 @@ exports.createBokningar = async (req, res) => {
   }
 
   try {
-    await bokningService.createBokningar(
+    await bokningService.createBokning(
       bokningAntalPlatser
     );
     return res.status(201).json({
@@ -51,7 +64,7 @@ exports.createBokningar = async (req, res) => {
   }
 };
 
-exports.updateBokningar = async (req, res) => {
+exports.updateBokning = async (req, res) => {
   try {
     const bokningId = req.params.id;
     const bokningData = req.body;
@@ -63,8 +76,8 @@ exports.updateBokningar = async (req, res) => {
       return res.status(400).json({ message: "Alla värden måste anges" });
     }
 
-    const updatedBokningar = await bokningService.updateBokningar(bokningId, bokningData);
-    res.json(updatedBokningar);
+    const updatedBokning = await bokningService.updateBokning(bokningId, bokningData);
+    res.json(updatedBokning);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
