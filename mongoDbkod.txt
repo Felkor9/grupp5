@@ -1,0 +1,13 @@
+use  recentionerreseplanerare
+
+db.authors.insertOne(
+{
+    namn: "Felix Korshavn",
+    datum: 250430,
+    recensioner: [
+        "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
+    ]
+}
+)
+
+db.authors.find()
