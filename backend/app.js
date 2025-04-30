@@ -15,8 +15,14 @@ const resorRoutes = require("./routes/resorRoutes");
 const bokningarRoutes = require('./routes/bokningarRoutes')
 const userRoutes = require("./routes/userRoutes");
 
-app.use(resorRoutes);
+
+const destinationRoutes=require('./routes/destinationRoutes')
+
+app.use(resorRoutes)
+app.use(destinationRoutes)
+
 app.use(userRoutes);
+
 
 app.use(bokningarRoutes)
 
