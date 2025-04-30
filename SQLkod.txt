@@ -37,12 +37,40 @@ CREATE TABLE bokningar(
     FOREIGN KEY (bokningResorId) REFERENCES resor(resorId)
 );
 
-INSERT INTO resor(resorLand, resorDatum, resaLangd, resorPris)
+INSERT INTO resor(resorLand, resorDatum, resorLangd, resorPris)
 VALUES ('Sverige', 20250323, 1, 2000);
+
+
+INSERT INTO user(userName, userEmail)
+VALUES ('Evelina Jonasson', 'evelina.jonasson@iths.se'), ('Elin Eriksson', 'elin.eriksson@iths.se'), ('Linn Lihnell', 'linn.lihnell@iths.se'), ('Felix Korshavn', 'felix.korshavn@iths.se'), ('Jerry Johansson', 'jerry.johansson@iths.se')
+=======
+INSERT INTO destination(destinationStad, destinationHotell, destinationResorId)
+VALUES ('Malmö', "Scandic Malmö", 1);
+
+INSERT INTO bokningar(bokningAntalPlatser, bokningResorId, bokningUserId)
+VALUES (3, 1, 1);
 
 
 -- SELECTSATSER HÄR
 SELECT * FROM resor;
+SELECT * FROM user;
+=======
+SELECT * FROM destination;
+SELECT * FROM bokningar;
+
+-- INNER JOIN bokning - user - resor - destination
+
+
+SELECT
+    bokningar.bokningAntalPlatser,
+    user.userName,
+    resor.resorLand,
+    destination.destinationStad
+FROM bokningar
+INNER JOIN resor ON bokningar.bokningResorId = resor.resorId
+INNER JOIN user ON bokningar.bokningUserId = user.userId
+INNER JOIN destination ON resor.resorId = destination.destinationResorId
+WHERE userId = 1;
 
 
 -- DROP TABLE HÄR I ORDNING
