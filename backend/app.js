@@ -13,6 +13,9 @@ app.use(express.static('public'))
 
 const resorRoutes=require('./routes/resorRoutes')
 
+const destinationRoutes=require('./routes/destinationRoutes')
+
 app.use(resorRoutes)
+app.use(destinationRoutes)
 
 app.listen(port,()=>console.log(`Example listening on port ${port}`))
