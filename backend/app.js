@@ -14,7 +14,7 @@ app.use(express.static("public"));
 const connectionMongoDB = require("./connectionMongoDB");
 connectionMongoDB();
 
-const recensionerRoutes = require("./routes/recensionerRoutes")
+const recensionerRoutes = require("./routes/recensionerRoutes");
 
 const resorRoutes = require("./routes/resorRoutes");
 const bokningarRoutes = require("./routes/bokningarRoutes");
@@ -28,6 +28,6 @@ app.use(destinationRoutes);
 app.use(userRoutes);
 
 app.use(bokningarRoutes);
-app.use(recensionerRoutes)
+app.use(recensionerRoutes);
 
 app.listen(port, () => console.log(`Example listening on port ${port}`));
