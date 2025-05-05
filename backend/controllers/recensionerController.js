@@ -51,3 +51,16 @@ exports.updateRecension = async (req, res) => {
     });
   }
 };
+
+exports.deleteRecension = (async(req, res) => {
+    const { id } = req.params;
+    try {
+        const deletedRecension = await RecensionerModel.deleteOne({id});
+        return res.status(200).json(deletedRecension)
+    }
+    catch (error) {
+        return res.status(500).json({
+            error: error.message
+        });
+    }
+});
