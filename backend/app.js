@@ -11,19 +11,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static("public"));
 
+const connectionMongoDB = require("./connectionMongoDB");
+connectionMongoDB();
+
 const resorRoutes = require("./routes/resorRoutes");
-const bokningarRoutes = require('./routes/bokningarRoutes')
+const bokningarRoutes = require("./routes/bokningarRoutes");
 const userRoutes = require("./routes/userRoutes");
 
+const destinationRoutes = require("./routes/destinationRoutes");
 
-const destinationRoutes=require('./routes/destinationRoutes')
-
-app.use(resorRoutes)
-app.use(destinationRoutes)
+app.use(resorRoutes);
+app.use(destinationRoutes);
 
 app.use(userRoutes);
 
-
-app.use(bokningarRoutes)
+app.use(bokningarRoutes);
 
 app.listen(port, () => console.log(`Example listening on port ${port}`));
