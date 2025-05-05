@@ -1,11 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const recensionerController = require('../controllers/recensionerController');
+const recensionerController = require("../controllers/recensionerController");
 
-router.get('/recensioner', recensionerController.getRecensioner);
+router.get("/recensioner", recensionerController.getRecensioner);
+router.post("/recensioner", recensionerController.createRecension);
 
 // router.get('/api/books/:isbn', bookController.getBook);
-// router.post('/api/books', bookController.createBook);
 // router.put('/api/books', bookController.updateBook);
 // router.delete('/api/books/:isbn', bookController.deleteBook);
 
