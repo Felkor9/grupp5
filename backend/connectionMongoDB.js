@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const conectionMongoDB = async () => {
+const connectionMongoDB = async () => {
   try {
     await mongoose.connect("");
   } catch (error) {
