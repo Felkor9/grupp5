@@ -30,3 +30,24 @@ exports.createRecension = async (req, res) => {
     });
   }
 };
+
+//Ändra en recension
+exports.updateRecension = async (req, res) => {
+  const { namn, datum, recensioner } = req.body;
+
+  const { id } = req.params;
+
+  try {
+    await RecensionerModel.updateOne({
+      namn: namn,
+      recensioner: recensioner,
+      datum: datum,
+    });
+    const updatedRecension = await RecensionerModel.find({ id });
+    return res.status(200).json(updatedRecension);
+  } catch (error) {
+    return res.status(500).json({
+      error: error.message,
+    });
+  }
+};
