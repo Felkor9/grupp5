@@ -5,9 +5,10 @@ const recensionerController = require("../controllers/recensionerController");
 router.get("/recensioner", recensionerController.getRecensioner);
 router.post("/recensioner", recensionerController.createRecension);
 router.put("/recensioner/:id", recensionerController.updateRecension);
+router.delete('/recensioner/:namn', recensionerController.deleteRecension);
 
 // router.get('/api/books/:isbn', bookController.getBook);
-// router.delete('/api/books/:isbn', bookController.deleteBook);
+
 
 // // Alternativ för att spara i database
 // router.post('/api/books-create', bookController.createBookVersionCreate);
