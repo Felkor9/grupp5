@@ -52,6 +52,13 @@ VALUES ('Malmö', "Scandic Malmö", 1);
 INSERT INTO bokningar(bokningAntalPlatser, bokningResorId, bokningUserId)
 VALUES (3, 1, 1);
 
+INSERT INTO destination(destinationStad, destinationHotell, destinationResorId)
+VALUES ('Aten', 'Sparta Team Hotel',1),
+       ('Sorrento','Hotell Villa Fiorita',1),
+       ('Barcelona', 'Barcelone Princess',1),
+       ('Albufeira', 'Aurumar Beach Resort', 1),
+       ('Antalya', 'Uyar Palace', 1);
+
 -- SELECTSATSER HÄR
 SELECT * FROM resor;
 SELECT * FROM user;
