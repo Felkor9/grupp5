@@ -3,12 +3,16 @@ import navbarMenu from "./components/navbarMenu.vue";
 </script>
 
 <template>
-	<header>
-		<navbarMenu />
-	</header>
+	<navbarMenu />
+
 	<main>
 		<routerView />
 	</main>
 </template>
 
-<style scoped></style>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+</style>
