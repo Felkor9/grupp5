@@ -11,9 +11,9 @@ function fetchresor() {
 	fetch("http://localhost:3000/resor")
 		.then((result) => result.json())
 		.then((data) => {
-			resor.value = data;
+			resor.value = data.resor;
 			console.log(resor.value);
-			console.log(data);
+			console.log(data.resor);
 		});
 }
 
@@ -26,9 +26,10 @@ onMounted(fetchresor);
 		<navbarMenu />
 	</header>
 	<main>
+		<h1>Hej</h1>
 		<ul>
 			<li v-for="resa in resor" :key="resa.id">
-				<p>{{ resa[0].resorLand }}</p>
+				<p>{{ resa.resorLand }}</p>
 			</li>
 		</ul>
 
