@@ -20,9 +20,8 @@ onMounted(fetchresor);
 </script>
 
 <template>
-	<header>
-		<navbarMenu />
-	</header>
+	<navbarMenu />
+
 	<main>
 		<ul>
 			<li v-for="resa in resor" :key="resa.id">
@@ -36,4 +35,9 @@ onMounted(fetchresor);
 	</main>
 </template>
 
-<style scoped></style>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+</style>
