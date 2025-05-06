@@ -1,14 +1,14 @@
--- SKAPA DATABAS
-CREATE DATABASE IF NOT EXISTS reseplanerare;
+CREATE DATABASE reseplanerare;
+
 USE reseplanerare;
 
--- SKAPA TABELLER
 CREATE TABLE resor(
     resorId INT NOT NULL AUTO_INCREMENT UNIQUE,
     resorLand VARCHAR(50) NOT NULL ,
     resorDatum DATE NOT NULL,
     resorLangd INT NOT NULL ,
     resorPris INT NOT NULL,
+    resorbild_url VARCHAR(50),
     PRIMARY KEY (resorId)
 );
 
@@ -17,6 +17,8 @@ CREATE TABLE destination(
     destinationStad VARCHAR(50),
     destinationHotell VARCHAR(50),
     destinationResorId INT NOT NULL,
+    destinationStadBild_url VARCHAR(50),
+    destinationHotellBild_url VARCHAR(50),
     PRIMARY KEY (destinationId),
     FOREIGN KEY (destinationResorId) REFERENCES resor(resorId)
 );
@@ -38,26 +40,25 @@ CREATE TABLE bokningar(
     FOREIGN KEY (bokningResorId) REFERENCES resor(resorId)
 );
 
-
--- LÄGG TIll DATA
-INSERT INTO resor(resorLand, resorDatum, resorLangd, resorPris)
-VALUES ('Sverige', 20250323, 1, 2000);
+INSERT INTO resor(resorLand, resorDatum, resorLangd, resorPris, resorbild_url)
+VALUES ('Grekland', '20250912', '7', '9500', '1.jpg'),
+       ('Italien', '20250609', '9', '11923', '2.jpg'),
+       ('Spanien', '20250629', '7', '8999', '3.jpg'),
+       ('Portugal', '20250530', '12', '17400', '4.jpg'),
+       ('Turkiet', '20250801', '8', '7999', '5.jpg');
 
 INSERT INTO user(userName, userEmail)
 VALUES ('Evelina Jonasson', 'evelina.jonasson@iths.se'), ('Elin Eriksson', 'elin.eriksson@iths.se'), ('Linn Lihnell', 'linn.lihnell@iths.se'), ('Felix Korshavn', 'felix.korshavn@iths.se'), ('Jerry Johansson', 'jerry.johansson@iths.se')
 
-INSERT INTO destination(destinationStad, destinationHotell, destinationResorId)
-VALUES ('Malmö', "Scandic Malmö", 1);
+INSERT INTO destination(destinationStad, destinationHotell, destinationResorId, destinationHotellBild_url, destinationStadBild_url)
+VALUES ('Aten', 'Sparta Team Hotel',1, '1.jpg', '1.jpg'),
+       ('Sorrento','Hotell Villa Fiorita',2, '2.jpg', '2.jpg'),
+       ('Barcelona', 'Barcelone Princess',3, '3.jpg', '3.jpg'),
+       ('Albufeira', 'Aurumar Beach Resort', 4, '4.jpg', '4.jpg'),
+       ('Antalya', 'Uyar Palace', 5, '5.jpg', '5.jpg');
 
 INSERT INTO bokningar(bokningAntalPlatser, bokningResorId, bokningUserId)
 VALUES (3, 1, 1);
-
-INSERT INTO destination(destinationStad, destinationHotell, destinationResorId)
-VALUES ('Aten', 'Sparta Team Hotel',1),
-       ('Sorrento','Hotell Villa Fiorita',1),
-       ('Barcelona', 'Barcelone Princess',1),
-       ('Albufeira', 'Aurumar Beach Resort', 1),
-       ('Antalya', 'Uyar Palace', 1);
 
 -- SELECTSATSER HÄR
 SELECT * FROM resor;
@@ -65,7 +66,7 @@ SELECT * FROM user;
 SELECT * FROM destination;
 SELECT * FROM bokningar;
 
--- INNER JOIN (bokning - user - resor - destination)
+-- INNER JOIN för bokning - user - resor - destination
 SELECT
     bokningar.bokningAntalPlatser,
     user.userName,
@@ -77,16 +78,16 @@ INNER JOIN user ON bokningar.bokningUserId = user.userId
 INNER JOIN destination ON resor.resorId = destination.destinationResorId
 WHERE userId = 1;
 
--- INNER JOIN (resa - destination - hotell)
-SELECT
-    resor.resorLand,
-    destination.destinationStad,
-    destination.destinationHotell
-FROM resor
-INNER JOIN destination ON resor.resorId = destination.destinationResorId
-WHERE resor.resorId = 1;
+-- INNER JOIN för Resa - destination - hotell
+    SELECT
+        resor.resorLand,
+        destination.destinationStad,
+        destination.destinationHotell
+    FROM resor
+    INNER JOIN destination ON resor.resorId = destination.destinationResorId
+    WHERE resor.resorId = 1;
 
--- DROP TABLE HÄR
+-- DROP TABLE HÄR I ORDNING
 DROP TABLE resor;
 DROP TABLE destination;
 DROP TABLE user;
