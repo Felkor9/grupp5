@@ -1,5 +1,6 @@
 <script setup>
 import navbarMenu from "./components/navbarMenu.vue";
+import FeelHeader from "./components/FeelHeader.vue";
 import { useStore } from "../stores/store";
 import { ref, onMounted } from "vue";
 
@@ -20,8 +21,10 @@ onMounted(fetchresor);
 </script>
 
 <template>
-	<navbarMenu />
-
+	<header>
+		<FeelHeader />
+		<navbarMenu />
+	</header>
 	<main>
 		<ul>
 			<li v-for="resa in resor" :key="resa.id">
