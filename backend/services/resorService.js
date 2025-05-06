@@ -44,11 +44,11 @@ function getResaDestination(id) {
   });
 }
 
-function createResor(resorLand, resorDatum, resorLangd, resorPris) {
+function createResor(resorLand, resorDatum, resorLangd, resorPris, resorbild_url) {
   return new Promise((resolve, reject) => {
     let sql =
-      "INSERT INTO resor (resorLand, resorDatum, resorLangd, resorPris) VALUES (?,?,?,?)";
-    let params = [resorLand, resorDatum, resorLangd, resorPris];
+      "INSERT INTO resor (resorLand, resorDatum, resorLangd, resorPris, resorbild_url) VALUES (?,?,?,?,?)";
+    let params = [resorLand, resorDatum, resorLangd, resorPris, resorbild_url];
 
     connectionMySQL.query(sql, params, (err) => {
       if (err) reject(err);
