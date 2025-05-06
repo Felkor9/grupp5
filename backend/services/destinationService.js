@@ -24,10 +24,10 @@ function getDestination(id) {
   });
 }
 
-function createDestination(destinationStad, destinationHotell){
+function createDestination(destinationStad, destinationHotell, destinationStadBild_url, destinationHotellBild_url){
   return new Promise((resolve, reject)=>{
-      let sql= 'INSERT INTO destination (destinationStad, destinationHotell) VALUES (?,?)'
-      let params = [destinationStad, destinationHotell]
+      let sql= 'INSERT INTO destination (destinationStad, destinationHotell, destinationStadBild_url, destinationHotellBild_url) VALUES (?,?, ?, ?)'
+      let params = [destinationStad, destinationHotell, destinationStadBild_url, destinationHotellBild_url]
 
       connectionMySQL.query(sql,params, (err)=>{
           if(err)
