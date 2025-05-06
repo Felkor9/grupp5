@@ -41,21 +41,21 @@ CREATE TABLE bokningar(
 );
 
 INSERT INTO resor(resorLand, resorDatum, resorLangd, resorPris, resorbild_url)
-VALUES ('Grekland', '20250912', '7', '9500', '1.jpg'),
-       ('Italien', '20250609', '9', '11923', '2.jpg'),
-       ('Spanien', '20250629', '7', '8999', '3.jpg'),
-       ('Portugal', '20250530', '12', '17400', '4.jpg'),
-       ('Turkiet', '20250801', '8', '7999', '5.jpg');
+VALUES ('Grekland', '20250912', '7', '9500', 'grekland.jpg'),
+       ('Italien', '20250609', '9', '11923', 'italien.jpg'),
+       ('Spanien', '20250629', '7', '8999', 'spanien.jpg'),
+       ('Portugal', '20250530', '12', '17400', 'portugal.jpg'),
+       ('Turkiet', '20250801', '8', '7999', 'turkiet.jpg');
 
 INSERT INTO user(userName, userEmail)
-VALUES ('Evelina Jonasson', 'evelina.jonasson@iths.se'), ('Elin Eriksson', 'elin.eriksson@iths.se'), ('Linn Lihnell', 'linn.lihnell@iths.se'), ('Felix Korshavn', 'felix.korshavn@iths.se'), ('Jerry Johansson', 'jerry.johansson@iths.se')
+VALUES ('Evelina Jonasson', 'evelina.jonasson@iths.se'), ('Elin Eriksson', 'elin.eriksson@iths.se'), ('Linn Lihnell', 'linn.lihnell@iths.se'), ('Felix Korshavn', 'felix.korshavn@iths.se'), ('Jerry Johansson', 'jerry.johansson@iths.se');
 
 INSERT INTO destination(destinationStad, destinationHotell, destinationResorId, destinationHotellBild_url, destinationStadBild_url)
-VALUES ('Aten', 'Sparta Team Hotel',1, '1.jpg', '1.jpg'),
-       ('Sorrento','Hotell Villa Fiorita',2, '2.jpg', '2.jpg'),
-       ('Barcelona', 'Barcelone Princess',3, '3.jpg', '3.jpg'),
-       ('Albufeira', 'Aurumar Beach Resort', 4, '4.jpg', '4.jpg'),
-       ('Antalya', 'Uyar Palace', 5, '5.jpg', '5.jpg');
+VALUES ('Aten', 'Sparta Team Hotel',1, 'grekland-hotell.jpg', 'grekland-aten.jpg'),
+       ('Sorrento','Hotell Villa Fiorita',2, 'italien-hotell.jpg', 'italien-sorrento.jpg'),
+       ('Barcelona', 'Barcelone Princess',3, 'spanien-hotell.jpg', 'spanien-barcelona.jpg'),
+       ('Albufeira', 'Aurumar Beach Resort', 4, 'portugal-hotell.jpg', 'portugal-albufeira.jpg'),
+       ('Antalya', 'Uyar Palace', 5, 'turkiet-hotell.jpg', 'turkiet-antalya.jpg');
 
 INSERT INTO bokningar(bokningAntalPlatser, bokningResorId, bokningUserId)
 VALUES (3, 1, 1);
