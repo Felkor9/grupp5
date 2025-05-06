@@ -26,16 +26,16 @@ onMounted(fetchresor);
 		<navbarMenu />
 	</header>
 	<main>
-		<h1>Hej</h1>
+		<routerView />
+		<!-- <h1>Hej</h1>
 		<ul>
 			<li v-for="resa in resor" :key="resa.id">
 				<p>{{ resa.resorLand }}</p>
 			</li>
-		</ul>
+		</ul> -->
 
-		<p>{{ counter.count }}</p>
-		<routerView />
-		<button @click="counter.counter">Klicka här</button>
+		<!-- <p>{{ counter.count }}</p>
+		<button @click="counter.counter">Klicka här</button> -->
 	</main>
 </template>
 
