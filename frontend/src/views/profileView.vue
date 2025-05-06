@@ -1,3 +1,4 @@
 <template>
-	<h2>Profil</h2>
+	<h2>Mina bokningar</h2>
 </template>
+<script setup></script>
