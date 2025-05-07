@@ -1,10 +1,5 @@
-<script setup>
-import AddRecensionComponent from "../components/addRecensionComponent.vue";
-import recensionComponent from "../components/recensionComponent.vue";
-</script>
+<script setup></script>
 
 <template>
-	<!-- <h1>Scandic Strandgatan</h1> -->
-	<recensionComponent />
-	<AddRecensionComponent />
+	<h1>hej Evelina och Linn</h1>
 </template>
