@@ -5,10 +5,11 @@
 
     <div v-if="resor && resor.length > 0">
       <div class="resor-kort" v-for="resa in resor" :key="resa.id">
-
         <div class="resor-rad">
           <!-- <span class="resor-rubrik">Land:</span> -->
-          <span class="resor-varde"><h3>{{ resa.resorLand }}</h3></span>
+          <span class="resor-varde"
+            ><h3>{{ resa.resorLand }}</h3></span
+          >
         </div>
         <div class="resor-rad">
           <span class="resor-varde">{{ resa.resorPris }} kr</span>
@@ -22,10 +23,16 @@
           <span class="resor-varde">{{ resa.resorLangd }} dagar</span>
         </div>
         <div class="resor-img">
-          <img :src="`/resorimg/${resa.resorbild_url}`" alt="" style="max-width: 100%;">
+          <img
+            :src="`/resorimg/${resa.resorbild_url}`"
+            alt=""
+            style="max-width: 100%"
+          />
         </div>
         <button class="bokning-knapp">
-          <router-link class="router" to="/">Läs mer</router-link>
+          <router-link class="router" :to="`/destination/${resa.id}`"
+            >Visa resmål</router-link
+          >
         </button>
       </div>
     </div>
@@ -119,7 +126,7 @@ p {
   margin-top: 2rem;
 }
 
-.resor-img{
-  max-width: 80%
+.resor-img {
+  max-width: 80%;
 }
 </style>
