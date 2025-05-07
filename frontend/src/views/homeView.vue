@@ -5,26 +5,24 @@
 
     <div v-if="resor && resor.length > 0">
       <div class="resor-kort" v-for="resa in resor" :key="resa.id">
+
         <div class="resor-rad">
-          <span class="resor-rubrik">
-            {{ resa.resorDatum.slice(0, 10) }}
-          </span>
-        </div>
-        <div class="resor-rad">
-          <span class="resor-rubrik">Land:</span>
-          <span class="resor-varde">{{ resa.resorLand }}</span>
+          <!-- <span class="resor-rubrik">Land:</span> -->
+          <span class="resor-varde"><h3>{{ resa.resorLand }}</h3></span>
         </div>
         <div class="resor-rad">
-          <span class="resor-rubrik">Pris:</span>
-          <span class="resor-varde">{{ resa.resorPris }}</span>
+          <span class="resor-varde">{{ resa.resorPris }} kr</span>
         </div>
-        <div class="bokning-rad">
-          <span class="bokning-rubrik">Datum:</span>
-          <span class="bokning-varde">{{ resa.resorDatum }}</span>
+        <div class="resor-rad">
+          <span class="resor-rubrik">Avresa: </span>
+          <span class="resor-varde">{{ resa.resorDatum }}</span>
         </div>
-        <div class="bokning-rad">
-          <span class="bokning-rubrik">Längd:</span>
-          <span class="bokning-varde">{{ resa.resaLangd }}</span>
+        <div class="resor-rad">
+          <span class="resor-rubrik">Längd: </span>
+          <span class="resor-varde">{{ resa.resorLangd }} dagar</span>
+        </div>
+        <div class="resor-img">
+          <img :src="`/resorimg/${resa.resorbild_url}`" alt="" style="max-width: 100%;">
         </div>
         <button class="bokning-knapp">
           <router-link class="router" to="/">Läs mer</router-link>
@@ -65,7 +63,7 @@ h2 {
   font-weight: 600;
 }
 
-.bokning-kort {
+.resor-kort {
   background-color: #fff;
   border-radius: 14px;
   padding: 1.25rem 1rem;
@@ -77,30 +75,30 @@ h2 {
   transition: transform 0.2s ease;
 }
 
-.bokning-kort:active {
+.resor-kort:active {
   transform: scale(0.98);
 }
 
-.bokning-rad {
+.resor-rad {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   font-size: 1rem;
   color: #444;
 }
 
-.bokning-label {
+.resor-label {
   font-weight: 600;
   color: #666;
   flex: 1;
 }
 
-.bokning-varde {
+.resor-varde {
   flex: 2;
-  text-align: right;
+  /* text-align: right; */
   color: #222;
 }
 
-.bokning-knapp {
+.resor-knapp {
   padding: 5px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
@@ -119,5 +117,9 @@ p {
   color: #888;
   font-size: 1rem;
   margin-top: 2rem;
+}
+
+.resor-img{
+  max-width: 80%
 }
 </style>
