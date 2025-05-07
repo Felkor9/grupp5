@@ -14,7 +14,6 @@ export const useStore = defineStore("counter", () => {
 
 // store för bokningar
 
-
 export const useBokningarStore = defineStore("bokningar", () => {
   //fetch för att hämta färdiga bokningar
   const bokningar = ref(null);
@@ -48,20 +47,36 @@ export const useResorStore = defineStore("resor", () => {
   return { resor, fetchresor };
 });
 
+//Visa recensioner
+export const useRecensionerStore = defineStore("recensioner", () => {
+  const recensioner = ref(null);
 
-export const useRecensionerStore = defineStore('recensioner', () => {
-	const recensioner = ref(null);
+  async function fetchrecensioner() {
+    try {
+      const result = await fetch("http://localhost:3000/recensioner");
+      const data = await result.json();
+      recensioner.value = data || [];
+      console.log(recensioner.value);
+    } catch (error) {
+      console.error("Fel vid hämtning av recensioner:", error);
+    }
+  }
 
-	async function fetchrecensioner() {
-		try {
-			const result = await fetch("http://localhost:3000/recensioner");
-			const data = await result.json();
-			recensioner.value = data || [];
-			console.log(recensioner.value);
-		} catch (error) {
-			console.error("Fel vid hämtning av recensioner:", error);
-		}
-	}
+  return { recensioner, fetchrecensioner };
+});
 
-	return { recensioner, fetchrecensioner };
+//Visa upp destinationer
+export const useDestinationerStore = defineStore("destination", () => {
+  const destination = ref(null);
+
+  function fetchdestinationer() {
+    fetch("http://localhost:3000/destination")
+      .then((result) => result.json())
+      .then((data) => {
+        destination.value = data.destination || [];
+        console.log(destination.value);
+        console.log(data.destination);
+      });
+  }
+  return { destination, fetchdestinationer };
 });
