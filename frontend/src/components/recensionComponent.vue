@@ -26,7 +26,7 @@ onMounted(fetchrecensioner);
 section {
 	padding: 1.5rem 1rem;
 	background-color: #f5f7fa;
-	min-height: 100vh;
+	min-height: 50vh;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
