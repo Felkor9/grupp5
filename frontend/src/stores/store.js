@@ -48,49 +48,6 @@ export const useResorStore = defineStore("resor", () => {
   return { resor, fetchresor };
 });
 
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export const useRecensionerStore = defineStore('recensioner', () => {
 	const recensioner = ref(null);
@@ -108,4 +65,3 @@ export const useRecensionerStore = defineStore('recensioner', () => {
 
 	return { recensioner, fetchrecensioner };
 });
-
