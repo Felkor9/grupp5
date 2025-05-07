@@ -24,7 +24,7 @@ function fetchbokningar() {
 		.then((result) => result.json())
 		.then((data) => {
 			bokningar.value = data.bokning || [];
-			// console.log(data.bokningar);
+			console.log(data.bokning);
 		})
 	}
 
@@ -32,3 +32,62 @@ function fetchbokningar() {
 	return { bokningar, fetchbokningar}
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const useRecensionerStore = defineStore('recensioner', () => {
+	const recensioner = ref(null);
+
+	async function fetchrecensioner() {
+		try {
+			const result = await fetch("http://localhost:3000/recensioner");
+			const data = await result.json();
+			recensioner.value = data || [];
+			console.log(recensioner.value);
+		} catch (error) {
+			console.error("Fel vid hämtning av recensioner:", error);
+		}
+	}
+
+	return { recensioner, fetchrecensioner };
+});
