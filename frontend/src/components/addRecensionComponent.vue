@@ -67,13 +67,15 @@ fetchRecensioner();
 </script>
 
 <template>
-	<div class="containerForButton">
+	<div class="div-button">
 		<button type="button" class="add-button" @click="toggleFormular">
 			<p>+</p>
 		</button>
-
+	</div>
+	<div class="containerForButton">
 		<!-- Formuläret visas ovanpå knappen -->
 		<form v-if="visaFormular" class="recension-form" @submit.prevent="submitForm">
+			<img src="../assets/bakåtpil.svg" alt="pil bakåt" class="img-arrow" @click="toggleFormular" />
 			<label for="namn" class="label">Namn:</label>
 			<input v-model="namn" type="text" id="namn" name="namn" required />
 
@@ -99,26 +101,35 @@ fetchRecensioner();
 
 <style scoped>
 .containerForButton {
-	position: relative;
-	width: 100%;
-	height: 100vh;
+	/* position: relative;
+	width: 100vw;
+
 	display: flex;
 	justify-content: center;
-	align-items: flex-end;
+	align-items: center;
+	flex-direction: column; */
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-	background-color: #f5f7fa00;
+	background-color: #f5f7fa;
+	height: 100vh;
+}
+
+.img-arrow {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
 }
 
 .recension-form {
-	position: absolute;
-	top: 5rem;
+	/* position: absolute; */
+	top: 0;
 	left: 50%;
+	position: absolute;
 	transform: translateX(-50%);
-	width: 90%;
+	width: 100%;
 	max-width: 400px;
 	height: 90vh;
 	background-color: #ffffff;
-	padding: 1.5rem;
+	padding: 2rem;
 	border-radius: 16px;
 	z-index: 5;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -168,8 +179,20 @@ textarea:focus {
 	background-color: #005fcc;
 }
 
-.add-button {
+.div-button {
 	position: relative;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.add-button {
+	position: fixed;
+	left: 0;
+	bottom: 0;
 	z-index: 10;
 	height: 50px;
 	width: 50px;
@@ -178,6 +201,7 @@ textarea:focus {
 	cursor: pointer;
 	margin: 1rem;
 	box-shadow: 0.1px 0.1px 0.4em rgb(185, 185, 185);
+	margin: 30px;
 }
 
 .addrec {
