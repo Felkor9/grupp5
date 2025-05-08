@@ -1,5 +1,4 @@
 <template>
-	<!-- <h1>Scandic Strandgatan</h1> -->
 	<div class="container">
 		<recensionComponent class="skriva-recension" />
 		<AddRecensionComponent class="knapp-recension" />
