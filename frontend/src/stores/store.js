@@ -82,18 +82,30 @@ export const useDestinationerStore = defineStore("destination", () => {
 });
 
 //Hämtar och visar rätt destination till vald resa
-
 export const useResaDestinationStore = defineStore("resadestination", () => {
   const resadestination = ref(null);
+  const resordestinationer = ref([]);
 
-  function fetchResaDestination() {
+  function fetchResaDestination(id) {
     fetch(`http://localhost:3000/resadestination/${id}`)
       .then((result) => result.json())
       .then((data) => {
-        resadestination.value = data.resadestination || [];
-        console.log(resadestination.value);
-        console.log(data.resadestination);
+        resordestinationer.value = data.resor || [];
+        console.log(resordestinationer.value);
+        // console.log(data.resadestination);
       });
   }
-  return { resadestination, fetchResaDestination };
+  return { resadestination, fetchResaDestination, resordestinationer };
 });
+
+//  function fetchResaDestination(id) {
+//     fetch(`http://localhost:3000/resadestination/${id}`)
+//       .then((result) => result.json())
+//       .then((data) => {
+//         resor.value = data.resor || [];
+//         console.log(data.resor);
+//         // console.log(data.resadestination);
+//       });
+//   }
+//   return { resadestination, fetchResaDestination, resordestinationer };
+// });

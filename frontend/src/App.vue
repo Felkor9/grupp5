@@ -11,12 +11,6 @@ import { ref } from "vue";
   </header>
   <main>
     <routerView />
-    <!-- <h1>Hej</h1>
-    <ul>
-      <li v-for="resa in resor" :key="resa.id">
-        <p>{{ resa.resorLand }}</p>
-      </li> -->
-    <!-- </ul> -->
   </main>
 </template>
 
