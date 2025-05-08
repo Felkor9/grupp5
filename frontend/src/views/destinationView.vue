@@ -2,40 +2,34 @@
   <section>
     <h2>Destination</h2>
 
-    <div v-if="destination && destination.length > 0">
+    <div v-if="resordestinationer && resordestinationer.length > 0">
       <div
-        class="destination-kort"
-        v-for="destination in destination"
-        :key="destination.id"
+        class="destinationer-kort"
+        v-for="destination in resordestinationer"
+        :key="destination.destinationId"
       >
         <div class="destinationer-rad">
-          <!-- <span class="resor-rubrik">Land:</span> -->
           <span class="destinationer-varde"
             ><h3>{{ destination.destinationStad }}</h3></span
           >
-        </div>
-        <div class="destinationer-rad">
-          <span class="destinationer-varde">{{
-            destination.destinationHotell
-          }}</span>
+          <div class="destinationer-rad">
+            <span class="destinationer-varde"
+              ><b>Hotell: </b>{{ destination.destinationHotell }}</span
+            >
+          </div>
         </div>
         <div class="stad-img">
           <img
             :src="`/stadimg/${destination.destinationStadBild_url}`"
-            alt=""
             style="max-width: 100%"
           />
         </div>
         <div class="stad-img">
           <img
             :src="`/hotellimg/${destination.destinationHotellBild_url}`"
-            alt=""
             style="max-width: 100%"
           />
         </div>
-        <!-- <button class="bokning-knapp">
-          <router-link class="router" to="/">Läs mer</router-link> -->
-        <!-- </button> -->
       </div>
     </div>
 
@@ -44,20 +38,21 @@
 </template>
 
 <script setup>
-import {useRoute } from "vue-router";
+import { useRoute } from "vue-router";
 import { useResaDestinationStore } from "../stores/store";
 import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
 
-const route = useRoute()
+const route = useRoute();
 const store = useResaDestinationStore();
 // const { destination } = storeToRefs(store);
 // const { fetchResaDestination } = store;
-const {resadestination } = storeToRefs(store)
+const { resadestination, resordestinationer } = storeToRefs(store);
 
 onMounted(() => {
-  store.fetchResaDestination(route.params.id)
-})
+  console.log("Route params", route.params);
+  store.fetchResaDestination(route.params.id);
+});
 </script>
 
 <style scoped>
@@ -133,7 +128,7 @@ p {
   margin-top: 2rem;
 }
 
-.destinationer-img {
+.stad-img {
   max-width: 80%;
 }
 </style>
