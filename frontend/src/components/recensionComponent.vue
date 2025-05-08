@@ -16,7 +16,9 @@ onMounted(fetchrecensioner);
 		<ul>
 			<li class="lista-recensioner" v-for="recension in recensioner" :key="recension.id">
 				<strong>{{ recension.namn }}</strong>
-				<p>"{{ recension.recensioner[0] }}"</p>
+				<div v-for="(rec, index) in recension.recensioner" :key="index">
+					<p>{{ rec }}</p>
+				</div>
 			</li>
 		</ul>
 	</section>
