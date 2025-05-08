@@ -36,7 +36,7 @@ function getResorDestination() {
 function getResaDestination(id) {
   return new Promise((resolve, reject) => {
     let sql =
-      "SELECT resor.resorLand, destination.destinationStad, destination.destinationHotell FROM resor INNER JOIN destination ON resor.resorId = destination.destinationResorId WHERE resor.resorId = ?;";
+      "SELECT resor.resorId, resor.resorLand, destination.destinationStad, destination.destinationHotell, destination.destinationStadBild_url, destination.destinationHotellBild_url FROM resor INNER JOIN destination ON resor.resorId = destination.destinationResorId WHERE resor.resorId = ?;";
     connectionMySQL.query(sql, [id], (err, rows) => {
       if (err) reject(err);
       else resolve(rows);
@@ -44,7 +44,13 @@ function getResaDestination(id) {
   });
 }
 
-function createResor(resorLand, resorDatum, resorLangd, resorPris, resorbild_url) {
+function createResor(
+  resorLand,
+  resorDatum,
+  resorLangd,
+  resorPris,
+  resorbild_url
+) {
   return new Promise((resolve, reject) => {
     let sql =
       "INSERT INTO resor (resorLand, resorDatum, resorLangd, resorPris, resorbild_url) VALUES (?,?,?,?,?)";
