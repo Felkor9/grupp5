@@ -9,10 +9,10 @@ import testingView from "./src/views/testingView.vue";
 const routes = [
   { path: "/", name: "homeView", component: homeView },
   { path: "/profile", name: "profileView", component: profileView },
-  { path: "/destination", name: "destinationView", component: destinationView },
+  // { path: "/destination", name: "destinationView", component: destinationView },
   { path: "/test", name: "testingView", component: testingView },
   {
-    path: "/destination/:id",
+    path: "/resadestination/:id",
     name: "destinationView",
     component: destinationView,
   },

@@ -44,15 +44,20 @@
 </template>
 
 <script setup>
-import { useDestinationerStore } from "../stores/store";
+import {useRoute } from "vue-router";
+import { useResaDestinationStore } from "../stores/store";
 import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
 
-const store = useDestinationerStore();
-const { destination } = storeToRefs(store);
-const { fetchdestinationer } = store;
+const route = useRoute()
+const store = useResaDestinationStore();
+// const { destination } = storeToRefs(store);
+// const { fetchResaDestination } = store;
+const {resadestination } = storeToRefs(store)
 
-onMounted(fetchdestinationer);
+onMounted(() => {
+  store.fetchResaDestination(route.params.id)
+})
 </script>
 
 <style scoped>

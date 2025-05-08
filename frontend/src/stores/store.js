@@ -80,3 +80,20 @@ export const useDestinationerStore = defineStore("destination", () => {
   }
   return { destination, fetchdestinationer };
 });
+
+//Hämtar och visar rätt destination till vald resa
+
+export const useResaDestinationStore = defineStore("resadestination", () => {
+  const resadestination = ref(null);
+
+  function fetchResaDestination() {
+    fetch(`http://localhost:3000/resadestination/${id}`)
+      .then((result) => result.json())
+      .then((data) => {
+        resadestination.value = data.resadestination || [];
+        console.log(resadestination.value);
+        console.log(data.resadestination);
+      });
+  }
+  return { resadestination, fetchResaDestination };
+});
