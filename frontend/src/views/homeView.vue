@@ -30,7 +30,7 @@
           />
         </div>
         <button class="bokning-knapp">
-          <router-link class="router" :to="`/destination/${resa.id}`"
+          <router-link class="router" :to="`/resadestination/${resa.id}`"
             >Visa resmål</router-link
           >
         </button>
