@@ -57,6 +57,13 @@ VALUES ('Aten', 'Sparta Team Hotel',1, 'grekland-hotell.jpg', 'grekland-aten.jpg
        ('Albufeira', 'Aurumar Beach Resort', 4, 'portugal-hotell.jpg', 'portugal-albufeira.jpg'),
        ('Antalya', 'Uyar Palace', 5, 'turkiet-hotell.jpg', 'turkiet-antalya.jpg');
 
+INSERT INTO destination(destinationStad, destinationHotell, destinationResorId, destinationHotellBild_url, destinationStadBild_url)
+VALUES ('Aten', 'Four Seasons', 1,'grekland-hotell2.jpg', 'grekland-aten.jpg'),
+       ('Sorrento','Sorrento la hotell', 2, 'italien-hotell2.jpg', 'italien-sorrento.jpg'),
+       ('Barcelona','Hotel Arts Barcelona', 3, 'spanien-hotell2.jpg', 'spanien-barcelona.jpg'),
+       ('Albufeira', 'Plaza hotel', 4,'portugal-hotell2.jpg', 'portugal-albufeira.jpg'),
+       ('Antalya', 'Pearly hotel',5,'turkiet-hotell2.jpg','turkiet-antalya.jpg');
+
 INSERT INTO bokningar(bokningAntalPlatser, bokningResorId, bokningUserId)
 VALUES (3, 1, 1);
 
@@ -80,9 +87,12 @@ WHERE userId = 1;
 
 -- INNER JOIN för Resa - destination - hotell
     SELECT
+        resor.resorId,
         resor.resorLand,
         destination.destinationStad,
-        destination.destinationHotell
+        destination.destinationHotell,
+        destination.destinationStadBild_url,
+        destination.destinationHotellBild_url
     FROM resor
     INNER JOIN destination ON resor.resorId = destination.destinationResorId
     WHERE resor.resorId = 1;
