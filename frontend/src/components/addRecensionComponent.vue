@@ -83,7 +83,12 @@ fetchRecensioner();
 			<input v-model="datum" type="date" id="datum" name="datum" required />
 
 			<label for="recension1" class="label">Skriv din recension här:</label>
-			<textarea v-model="recension1" id="recension1" name="recension1" required></textarea>
+			<textarea
+				v-model="recension1"
+				id="recension1"
+				name="recension1"
+				required
+				placeholder="Skriv här:"></textarea>
 			<button class="addrec" @click="addrecension" type="button">
 				Lägg till en till recension
 			</button>
@@ -100,14 +105,11 @@ fetchRecensioner();
 </template>
 
 <style scoped>
+* {
+	margin: 0;
+	padding: 0;
+}
 .containerForButton {
-	/* position: relative;
-	width: 100vw;
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column; */
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 	background-color: #f5f7fa;
 	height: 100vh;
@@ -119,6 +121,10 @@ fetchRecensioner();
 	cursor: pointer;
 }
 
+p {
+	font-size: x-large;
+}
+
 .recension-form {
 	/* position: absolute; */
 	top: 0;
@@ -126,10 +132,11 @@ fetchRecensioner();
 	position: absolute;
 	transform: translateX(-50%);
 	width: 100%;
-	max-width: 400px;
+	max-width: 100vh;
 	height: 90vh;
 	background-color: #ffffff;
 	padding: 2rem;
+	/* margin-top: 0; */
 	border-radius: 16px;
 	z-index: 5;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -182,7 +189,8 @@ textarea:focus {
 .div-button {
 	position: relative;
 	width: 100vw;
-	height: 100vh;
+	height: 20vh;
+	/* background-color: green; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -191,17 +199,17 @@ textarea:focus {
 
 .add-button {
 	position: fixed;
-	left: 0;
-	bottom: 0;
-	z-index: 10;
-	height: 50px;
-	width: 50px;
+	left: 42.5%;
+	bottom: 15%;
+	z-index: 25;
+	height: 5em;
+	width: 5em;
 	border-radius: 100%;
 	border: 1px solid black;
 	cursor: pointer;
-	margin: 1rem;
+	/* margin: 1rem; */
 	box-shadow: 0.1px 0.1px 0.4em rgb(185, 185, 185);
-	margin: 30px;
+	/* margin: 30px; */
 }
 
 .addrec {

@@ -18,9 +18,8 @@
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-	margin-bottom: 20px;
 	position: relative;
+	background: linear-gradient(90deg, #1e3a8a, #2563eb);
 }
 
 .nav-lista {
@@ -38,15 +37,16 @@
 .lista-knapp {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	/* margin: 10px; */
-	background-color: grey;
-	width: 50vw;
-	height: 40px;
+	justify-content: space-around;
+	margin: 10px;
+	/* background-color: rgb(254, 254, 254); */
+	width: 100vw;
+	height: 45px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .router-link {
-	color: black;
+	color: rgb(255, 255, 255);
 	text-decoration: none;
 }
 </style>
