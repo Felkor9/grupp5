@@ -105,10 +105,6 @@ fetchRecensioner();
 </template>
 
 <style scoped>
-* {
-	margin: 0;
-	padding: 0;
-}
 .containerForButton {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 	background-color: #f5f7fa;
