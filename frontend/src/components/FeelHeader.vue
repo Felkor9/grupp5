@@ -1,7 +1,7 @@
 <template>
 	<header class="feel-header">
 		<router-link to="/" class="logo-container">
-			<div class="logo-icon">💬</div>
+			<div class="logo-icon">✈️</div>
 			<h1 class="logo-text">FEEL</h1>
 		</router-link>
 		<!-- <div class="icon-container">
