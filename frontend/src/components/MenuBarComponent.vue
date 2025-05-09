@@ -5,17 +5,17 @@
 				<router-link class="router" to="/">
 					<img src="../assets/explore.svg" alt="" class="icon-menubar" />
 				</router-link>
-				<router-link class="router" to="/">Explore</router-link>
+				<router-link class="router" to="/">Utforska</router-link>
 			</div>
 			<div class="list-item">
 				<router-link class="router" to="/test">
 					<img src="../assets/saved.svg" alt="" class="icon-menubar" />
 				</router-link>
-				<router-link class="router" to="/test">Saved</router-link>
+				<router-link class="router" to="/test">Sparade</router-link>
 			</div>
 			<div class="list-item">
 				<router-link class="router" to="/profile">
-					<img src="../assets/bell.svg" alt="" class="icon-menubar" />
+					<img src="../assets/bokningar.svg" alt="" class="icon-menubar" />
 				</router-link>
 				<router-link class="router" to="/profile">Bokningar</router-link>
 			</div>
@@ -39,6 +39,8 @@
 	list-style: none;
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
+	margin-right: 17px;
 }
 
 .list-item {
