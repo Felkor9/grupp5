@@ -15,7 +15,7 @@
 				</div>
 				<div class="resor-rad">
 					<span class="resor-rubrik">Avresa: </span>
-					<span class="resor-varde">{{ resa.resorDatum }}</span>
+					<span class="resor-varde">{{ resa.resorDatum.slice(0, 10) }}</span>
 				</div>
 				<div class="resor-rad">
 					<span class="resor-rubrik">Längd: </span>
@@ -50,75 +50,95 @@ onMounted(fetchresor);
 
 <style scoped>
 section {
-	padding: 1.5rem 1rem;
-	background-color: #f5f7fa;
+	padding: 2rem 1rem;
+	background: linear-gradient(to bottom, #f0f4f8, #e2e8f0);
 	min-height: 100vh;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	font-family: "Segoe UI", sans-serif;
 }
 
 h2 {
-	font-size: 1.75rem;
-	margin-bottom: 1.5rem;
-	color: #222;
+	font-size: 2rem;
+	margin-bottom: 2rem;
+	color: #1e3a8a;
 	text-align: center;
-	font-weight: 600;
+	font-weight: 700;
+	letter-spacing: 1px;
 }
 
 .resor-kort {
-	background-color: #fff;
-	border-radius: 14px;
-	padding: 1.25rem 1rem;
-	margin-bottom: 1rem;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+	background-color: #ffffff;
+	border-radius: 20px;
+	padding: 1.5rem;
+	margin-bottom: 2rem;
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
-	transition: transform 0.2s ease;
+	gap: 1rem;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.resor-kort:active {
-	transform: scale(0.98);
+.resor-kort:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
 }
 
 .resor-rad {
 	display: flex;
-	/* justify-content: space-between; */
-	font-size: 1rem;
-	color: #444;
+	gap: 0.5rem;
+	font-size: 1.1rem;
+	color: #333;
 }
 
-.resor-label {
+.resor-rubrik {
 	font-weight: 600;
-	color: #666;
-	flex: 1;
+	color: #2563eb;
+	min-width: 80px;
+}
+
+.resor-varde h3 {
+	font-size: 1.5rem;
+	color: #1e3a8a;
+	margin: 0;
 }
 
 .resor-varde {
-	flex: 2;
-	/* text-align: right; */
 	color: #222;
 }
 
-.resor-knapp {
-	padding: 5px;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+.resor-img img {
+	width: 100%;
+	border-radius: 12px;
+	object-fit: cover;
+	max-height: 240px;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+}
+
+.bokning-knapp {
+	background-color: #2563eb;
+	color: white;
+	border: none;
+	padding: 0.75rem 1.25rem;
+	border-radius: 12px;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: 600;
+	text-align: center;
+	margin-top: 1rem;
+	transition: background-color 0.2s ease;
+}
+
+.bokning-knapp:hover {
+	background-color: #1e40af;
 }
 
 .router {
-	color: #222;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	color: white;
 	text-decoration: none;
-	font-size: 1rem;
-}
-
-p {
-	text-align: center;
-	color: #888;
-	font-size: 1rem;
-	margin-top: 2rem;
-}
-
-.resor-img {
-	max-width: 80%;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
 }
 </style>
