@@ -1,9 +1,9 @@
 <template>
 	<header class="feel-header">
-		<div class="logo-container">
+		<router-link to="/" class="logo-container">
 			<div class="logo-icon">💬</div>
 			<h1 class="logo-text">FEEL</h1>
-		</div>
+		</router-link>
 		<!-- <div class="icon-container">
 			<img src="../assets/user.svg" alt="" class="usericon" />
 		</div> -->
@@ -23,13 +23,19 @@
 	position: sticky;
 	top: 0;
 	z-index: 100;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 }
 
 .logo-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: row;
 	gap: 12px;
+	text-decoration: none;
 }
 
 .logo-icon {
