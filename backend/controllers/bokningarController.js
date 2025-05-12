@@ -1,5 +1,18 @@
 const bokningService = require("./../services/bokningarService");
 
+exports.getFullBookingByUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const bokningar = await bokningService.getFullBookingByUser(id);
+    console.log("Bokningar från DB:", bokningar);
+    res.json({ bokning: bokningar });
+  } catch (error) {
+    return res.status(500).json({
+      error: error.message,
+    });
+  }
+};
+
 exports.getBokningar = async (req, res) => {
   try {
     const bokningar = await bokningService.getBokningar();
@@ -48,9 +61,7 @@ exports.createBokning = async (req, res) => {
   }
 
   try {
-    await bokningService.createBokning(
-      bokningAntalPlatser
-    );
+    await bokningService.createBokning(bokningAntalPlatser);
     return res.status(201).json({
       success: true,
       error: "",
@@ -70,13 +81,14 @@ exports.updateBokning = async (req, res) => {
     const bokningData = req.body;
 
     // Kontrollera att bokning finns
-    if (
-      !bokningData.bokningAntalPlatser
-    ) {
+    if (!bokningData.bokningAntalPlatser) {
       return res.status(400).json({ message: "Alla värden måste anges" });
     }
 
-    const updatedBokning = await bokningService.updateBokning(bokningId, bokningData);
+    const updatedBokning = await bokningService.updateBokning(
+      bokningId,
+      bokningData
+    );
     res.json(updatedBokning);
   } catch (error) {
     res.status(500).json({ error: error.message });
