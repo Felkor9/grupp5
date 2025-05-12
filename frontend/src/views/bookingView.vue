@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="container-heading">
-      <h2>Mina bokningar</h2>
+      <h2>Min bokning</h2>
       <button @click="goBack" class="goBackButton">
         <img src="../assets/arrowback.svg" alt="Back arrow" class="icon" />
       </button>
@@ -18,10 +18,6 @@
           </span>
         </div>
         <div class="bokning-rad">
-          <span class="bokning-rubrik">Namn:</span>
-          <span class="bokning-varde">{{ bokning.userName }}</span>
-        </div>
-        <div class="bokning-rad">
           <span class="bokning-rubrik">Land:</span>
           <span class="bokning-varde">{{ bokning.resorLand }}</span>
         </div>
@@ -30,30 +26,40 @@
           <span class="bokning-varde">{{ bokning.destinationStad }}</span>
         </div>
         <div class="bokning-rad">
-          <span class="bokning-rubrik">Platser:</span>
-          <span class="bokning-varde">{{ bokning.bokningAntalPlatser }}</span>
+          <span class="bokning-rubrik">Hotell:</span>
+          <span class="bokning-varde">{{ bokning.destinationHotell }}</span>
         </div>
-        <button class="bokning-knapp">
-          <router-link class="router" :to="`/bokningar`">Visa mer</router-link>
-        </button>
+        <div class="bokning-rad">
+          <div class="stad-img">
+            <img
+              :src="`/hotellimg/${bokning.destinationHotellBild_url}`"
+              style="max-width: 100%"
+            />
+          </div>
+        </div>
       </div>
     </div>
 
-    <p v-else>Du har inga bokningar ännu.</p>
+    <p v-else>Det finns inget här att visa. {{ bokningar }}</p>
   </section>
 </template>
 
 <script setup>
-import { useBokningarStore } from "../stores/store";
+import { useBookingByUserStore } from "../stores/store";
 import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 
-const store = useBokningarStore();
+const store = useBookingByUserStore();
 const { bokningar } = storeToRefs(store);
-const { fetchbokningar } = store;
+const { getFullBookingByUser } = store;
+const userId = 1;
+// const { fetchbokningar } = store;
 
-onMounted(fetchbokningar);
+onMounted(() => {
+  getFullBookingByUser(userId);
+  console.log("Bokningar från komponenten:", bokningar.value);
+});
 
 const router = useRouter();
 
@@ -62,7 +68,6 @@ const goBack = () => {
   router.back();
 };
 </script>
-
 <style scoped>
 .container-heading {
   display: flex;

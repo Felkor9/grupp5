@@ -13,7 +13,6 @@ export const useStore = defineStore("counter", () => {
 });
 
 // store för bokningar
-
 export const useBokningarStore = defineStore("bokningar", () => {
   //fetch för att hämta färdiga bokningar
   const bokningar = ref(null);
@@ -98,14 +97,19 @@ export const useResaDestinationStore = defineStore("resadestination", () => {
   return { resadestination, fetchResaDestination, resordestinationer };
 });
 
-//  function fetchResaDestination(id) {
-//     fetch(`http://localhost:3000/resadestination/${id}`)
-//       .then((result) => result.json())
-//       .then((data) => {
-//         resor.value = data.resor || [];
-//         console.log(data.resor);
-//         // console.log(data.resadestination);
-//       });
-//   }
-//   return { resadestination, fetchResaDestination, resordestinationer };
-// });
+//Visa bokningar på vald user
+export const useBookingByUserStore = defineStore("bookingByUser", () => {
+  const bokningar = ref([]);
+  const error = ref(null);
+
+  function getFullBookingByUser(userId) {
+    fetch(`http://localhost:3000/bokningar/full/${userId}`)
+      .then((result) => result.json())
+      .then((data) => {
+        bokningar.value = data.bokningar || [];
+        console.log("Bokningar hämtade:", bokningar.value);
+        error.value = null;
+      });
+  }
+  return { bokningar, getFullBookingByUser, error };
+});

@@ -72,6 +72,20 @@ SELECT * FROM resor;
 SELECT * FROM user;
 SELECT * FROM destination;
 SELECT * FROM bokningar;
+SELECT * FROM bokningar WHERE bokningUserId = 1;
+
+-- INNER JOIN för bokningsId, destinationHotell, destinationStad, ResorLand, resorDatum, hotellbild
+    SELECT
+    b.bokningId,
+    d.destinationHotell,
+    d.destinationStad,
+    r.resorLand,
+    r.resorDatum,
+    d.destinationHotellBild_url
+FROM bokningar b
+INNER JOIN resor r ON b.bokningResorId = r.resorId
+INNER JOIN destination d ON r.resorId = d.destinationResorId
+WHERE b.bokningUserId = 1;
 
 -- INNER JOIN för bokning - user - resor - destination
 SELECT
