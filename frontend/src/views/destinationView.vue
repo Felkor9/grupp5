@@ -44,10 +44,10 @@ onMounted(() => {
 </script>
 <style scoped>
 section {
-	padding: 1.5rem 1rem;
-	background: linear-gradient(to bottom, #f0f4f8, #dbeafe);
-	font-family: "Segoe UI", sans-serif;
+	padding: 2rem 1rem;
+	background: linear-gradient(to bottom, #f0f4f8, #e2e8f0);
 	min-height: 100vh;
+	font-family: "Segoe UI", sans-serif;
 }
 
 h2 {
@@ -61,13 +61,17 @@ h2 {
 
 .destinationer-kort {
 	background-color: #ffffff;
-	border-radius: 16px;
-	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-	margin-bottom: 1.5rem;
-	overflow: hidden;
-	transition: transform 0.3s ease;
+	border-radius: 20px;
+	padding: 1.5rem;
+	margin-bottom: 2rem;
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
 	display: flex;
 	flex-direction: column;
+	gap: 1rem;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .destinationer-kort:active {
@@ -76,16 +80,18 @@ h2 {
 
 .stad-img {
 	width: 100%;
-	height: 180px;
-	overflow: hidden;
-	border-bottom: 1px solid #eee;
+	border-radius: 12px;
+	object-fit: cover;
+	max-height: 240px;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
 }
 
 .stad-img img {
 	width: 100%;
-	height: 100%;
+	height: 50%;
 	object-fit: cover;
 	transition: transform 0.4s ease;
+	z-index: 10;
 }
 
 .destinationer-kort:active img {
@@ -93,10 +99,12 @@ h2 {
 }
 
 .destinationer-rad {
-	padding: 1rem 1.25rem 0.5rem;
 	display: flex;
 	flex-direction: column;
-	gap: 0.4rem;
+	/* justify-content: center; */
+	gap: 0.5rem;
+	font-size: 1.1rem;
+	color: #333;
 }
 
 .destinationer-rad h3 {
@@ -112,17 +120,17 @@ h2 {
 }
 
 .bokning-knapp {
-	margin: 0.75rem 1.25rem 1.25rem;
-	background: #2563eb;
+	background-color: #2563eb;
 	color: white;
 	border: none;
-	width: 100%;
-	padding: 0.75rem;
+	padding: 0.75rem 1.25rem;
+	border-radius: 12px;
+	cursor: pointer;
 	font-size: 1rem;
 	font-weight: 600;
-	border-radius: 10px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
+	text-align: center;
+	margin-top: 1rem;
+	transition: background-color 0.2s ease;
 }
 
 .bokning-knapp:hover {
