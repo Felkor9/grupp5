@@ -1,6 +1,11 @@
 <template>
 	<section>
-		<h2>Destination</h2>
+		<div class="container-heading">
+			<h2>Destination</h2>
+			<button @click="goBack" class="goBackButton">
+				<img src="../assets/arrowback.svg" alt="Back arrow" class="icon" />
+			</button>
+		</div>
 		<div v-if="resordestinationer && resordestinationer.length > 0">
 			<div
 				class="destinationer-kort"
@@ -32,6 +37,7 @@ import { useRoute } from "vue-router";
 import { useResaDestinationStore } from "../stores/store";
 import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
+import { useRouter } from "vue-router";
 const route = useRoute();
 const store = useResaDestinationStore();
 // const { destination } = storeToRefs(store);
@@ -41,6 +47,13 @@ onMounted(() => {
 	console.log("Route params", route.params);
 	store.fetchResaDestination(route.params.id);
 });
+
+const router = useRouter();
+
+// Funktion för att hoppa ett steg bakåt i historiken
+const goBack = () => {
+	router.back();
+};
 </script>
 <style scoped>
 section {
@@ -48,6 +61,30 @@ section {
 	background: linear-gradient(to bottom, #f0f4f8, #e2e8f0);
 	min-height: 100vh;
 	font-family: "Segoe UI", sans-serif;
+}
+
+.container-heading {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: center;
+	position: relative;
+	align-items: center;
+}
+
+.goBackButton {
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	position: absolute;
+	top: 15%;
+	left: 0;
+}
+
+.icon {
+	width: 24px; /* Justera storleken på din ikon här */
+	height: 24px;
+	transition: transform 0.3s ease;
 }
 
 h2 {
