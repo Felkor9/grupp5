@@ -2,16 +2,16 @@
 	<div class="container">
 		<div class="lista-hållare">
 			<div class="list-item">
-				<router-link class="router" to="/">
+				<router-link class="router" to="/home">
 					<img src="../assets/explore.svg" alt="" class="icon-menubar" />
 				</router-link>
-				<router-link class="router" to="/">Utforska</router-link>
+				<router-link class="router" to="/home">Utforska</router-link>
 			</div>
 			<div class="list-item">
-				<router-link class="router" to="/test">
+				<router-link class="router" to="/profile">
 					<img src="../assets/saved.svg" alt="" class="icon-menubar" />
 				</router-link>
-				<router-link class="router" to="/test">Sparade</router-link>
+				<router-link class="router" to="/profile">Sparade</router-link>
 			</div>
 			<div class="list-item">
 				<router-link class="router" to="/profile">
