@@ -46,7 +46,7 @@
         >.
       </div>
       <div class="booking-button-wrapper">
-        <button @click="läggTillBokning;" :disabled="!selectedDate">
+        <button @click="läggTillBokning" :disabled="!selectedDate">
           Lägg till bokning
         </button>
       </div>
@@ -222,15 +222,13 @@ h2 {
 
 .calendar-wrapper {
   display: flex;
-  text-align: center;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .calendar {
-  height: 90vh;
-  width: 65vw;
+  height: 85vh;
+  width: 80vw;
   background-color: white;
   border-radius: 25px;
   padding: 30px 30px;
@@ -284,8 +282,8 @@ h2 {
 }
 
 .calendar-days div {
-  width: 33px;
-  height: 33px;
+  min-width: 25px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
