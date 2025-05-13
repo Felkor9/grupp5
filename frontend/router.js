@@ -30,7 +30,7 @@ const routes = [
     name: "loginView",
     component: loginView,
   },
-  { path: "/bokningar", name: "bookingView", component: bookingView },
+  // { path: "/bokningar", name: "bookingView", component: bookingView },
 ];
 
 const router = createRouter({
