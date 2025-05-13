@@ -15,6 +15,7 @@
 					<span class="destinationer-hotell">
             <h3>{{ destination.destinationStad }}</h3>
 						Hotell:  <p> {{ destination.destinationHotell }}</p>
+          </span>
 				<div class="destinationer-rad">
 					<h3>{{ destination.destinationStad }}</h3>
 					<span class="destinationer-rad">
@@ -32,8 +33,10 @@
 					<button class="bokning-knapp">Boka detta hotell</button>
 				</div>
 			</div>
-		</div>
-		<p v-else>Det finns inga resor att boka för tillfället.</p>
+    </div>
+
+    </div>
+    <p v-else>Det finns inga resor att boka för tillfället.</p>
 	</section>
 </template>
 
