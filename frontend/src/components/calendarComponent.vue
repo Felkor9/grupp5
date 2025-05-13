@@ -75,7 +75,7 @@ const currentYear = ref(currentDate.getFullYear());
 const calendarDays = ref([]);
 const showMonthList = ref(false);
 
-const todayLabel = "TODAY";
+const todayLabel = "IDAG";
 const currentTime = ref("");
 const currentDateFormatted = ref("");
 
@@ -86,13 +86,13 @@ const getFebDays = (year) => (isLeapYear(year) ? 29 : 28);
 
 const updateTime = () => {
   const now = new Date();
-  currentTime.value = now.toLocaleTimeString("en-US", {
+  currentTime.value = now.toLocaleTimeString("sv-SE", {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
   });
 
-  currentDateFormatted.value = now.toLocaleDateString("en-US", {
+  currentDateFormatted.value = now.toLocaleDateString("sv-SE", {
     weekday: "long",
     year: "numeric",
     month: "long",
