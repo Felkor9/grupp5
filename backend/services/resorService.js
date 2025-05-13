@@ -66,11 +66,11 @@ function createResor(
 function updateResor(resorId, data) {
   return new Promise((resolve, reject) => {
     const sql =
-      "UPDATE resor SET resorLand = ?, resorDatum = ?, resaLangd = ?, resorPris = ? WHERE resorId = ?";
+      "UPDATE resor SET resorLand = ?, resorDatum = ?, resorLangd = ?, resorPris = ? WHERE resorId = ?";
     const values = [
       data.resorLand,
       data.resorDatum,
-      data.resaLangd,
+      data.resorLangd,
       data.resorPris,
       resorId,
     ];

@@ -104,3 +104,14 @@ exports.deleteBokning = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.getAllaBokningar = async (req, res) => {
+  try {
+    const bokningar = await bokningService.getAllaBokningar();
+    res.json({ bokningar });
+  } catch (error) {
+    return res.status(500).json({
+      error: error.message,
+    });
+  }
+};

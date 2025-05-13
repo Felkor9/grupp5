@@ -14,11 +14,11 @@ export const useStore = defineStore("counter", () => {
 
 // store för bokningar
 export const useBokningarStore = defineStore("bokningar", () => {
-  //fetch för att hämta färdiga bokningar
+  //fetch för att hämta färdig bokning av specifik användare
   const bokningar = ref(null);
 
   function fetchbokningar() {
-    fetch("http://localhost:3000/bokningklar/1")
+    fetch(`http://localhost:3000/bokningklar/${id}`)
       .then((result) => result.json())
       .then((data) => {
         bokningar.value = data.bokning || [];
@@ -26,8 +26,17 @@ export const useBokningarStore = defineStore("bokningar", () => {
       });
   }
 
+  //Hämta alla bokningar
+  function fetchAllaBokningar() {
+    fetch("http://localhost:3000/allabokningar") // Här använder vi en annan endpoint för att hämta alla bokningar
+      .then((result) => result.json())
+      .then((data) => {
+        bokningar.value = data.bokningar || []; // Uppdatera bokningar
+      });
+  }
+
   // detta måste ligga sist och funktioner vi använder behöver vara med här för att kunna användas
-  return { bokningar, fetchbokningar };
+  return { bokningar, fetchbokningar, fetchAllaBokningar };
 });
 
 //För att visa upp resor på första sidan
@@ -97,6 +106,7 @@ export const useResaDestinationStore = defineStore("resadestination", () => {
   return { resadestination, fetchResaDestination, resordestinationer };
 });
 
+
 //  function fetchResaDestination(id) {
 //     fetch(`http://localhost:3000/resadestination/${id}`)
 //       .then((result) => result.json())
@@ -118,7 +128,7 @@ export const useBookingByUserStore = defineStore("bookingByUser", () => {
     fetch(`http://localhost:3000/bokningar/full/${userId}`)
       .then((result) => result.json())
       .then((data) => {
-        bokningar.value = data.bokning || [];
+        bokningar.value = data.bokningar || [];
         console.log("Bokningar hämtade:", bokningar.value);
         error.value = null;
       });
