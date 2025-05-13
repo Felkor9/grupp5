@@ -18,6 +18,13 @@ const routes = [
     name: "destinationView",
     component: destinationView,
   },
+  // { path: "/bokningar", name: "bookingView", component: bookingView },
+  {
+    path: "/bokningar/:id",
+    name: "bookingView",
+    component: bookingView,
+    props: true,
+  },
   {
     path: "/login",
     name: "loginView",
