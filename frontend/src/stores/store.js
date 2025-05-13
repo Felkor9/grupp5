@@ -111,11 +111,7 @@ export const useResaDestinationStore = defineStore("resadestination", () => {
 // });
 
 
-export const useAuthStore = defineStore("auhtentication", () => {
 
-
-
-  return { };
 //Visa bokningar på vald user
 export const useBookingByUserStore = defineStore("bookingByUser", () => {
   const bokningar = ref([]);
