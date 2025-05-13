@@ -17,7 +17,13 @@ const routes = [
     name: "destinationView",
     component: destinationView,
   },
-  { path: "/bokningar", name: "bookingView", component: bookingView },
+  // { path: "/bokningar", name: "bookingView", component: bookingView },
+  {
+    path: "/bokningar/:id",
+    name: "bookingView",
+    component: bookingView,
+    props: true,
+  },
 ];
 
 const router = createRouter({

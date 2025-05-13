@@ -46,7 +46,7 @@ function getBokning(id) {
 function getBokningKlar(id) {
   return new Promise((resolve, reject) => {
     let sql =
-      "SELECT bokningar.bokningAntalPlatser, user.userName, resor.resorLand, resor.resorDatum, destination.destinationStad FROM bokningar INNER JOIN resor ON bokningar.bokningResorId = resor.resorId INNER JOIN user ON bokningar.bokningUserId = user.userId INNER JOIN destination ON resor.resorId = destination.destinationResorId WHERE userId = ?;";
+      "SELECT bokningar.bokningId, bokningar.bokningAntalPlatser, user.userName, resor.resorLand, resor.resorDatum, destination.destinationStad FROM bokningar INNER JOIN resor ON bokningar.bokningResorId = resor.resorId INNER JOIN user ON bokningar.bokningUserId = user.userId INNER JOIN destination ON resor.resorId = destination.destinationResorId WHERE userId = ?;";
     connectionMySQL.query(sql, [id], (err, rows) => {
       if (err) reject(err);
       else resolve(rows);
