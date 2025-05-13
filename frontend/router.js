@@ -4,16 +4,16 @@ import { createRouter, createWebHistory } from "vue-router";
 import profileView from "./src/views/profileView.vue";
 import homeView from "./src/views/homeView.vue";
 import destinationView from "./src/views/destinationView.vue";
-import testingView from "./src/views/testingView.vue";
 import loginView from "./src/views/loginView.vue";
 import bookingView from "./src/views/bookingView.vue";
+import recensionView from "./src/views/recensionView.vue";
 import BookView from "./src/views/bookView.vue";
 
 const routes = [
   { path: "/home", name: "homeView", component: homeView },
   { path: "/profile", name: "profileView", component: profileView },
   // { path: "/destination", name: "destinationView", component: destinationView },
-  { path: "/test", name: "testingView", component: testingView },
+  // { path: "/test", name: "testingView", component: testingView },
   {
     path: "/resadestination/:id",
     name: "destinationView",
@@ -31,6 +31,13 @@ const routes = [
     name: "loginView",
     component: loginView,
   },
+
+  {
+    path: "/recension",
+    name: "recensionView",
+    component: recensionView,
+  },
+  // { path: "/bokningar", name: "bookingView", component: bookingView },
 
   {
     path: "/book",

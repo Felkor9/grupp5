@@ -1,80 +1,7 @@
-<script setup>
-import { ref, onMounted } from "vue";
-import { useRecensionerStore } from "../stores/store";
-import { storeToRefs } from "pinia";
-
-const store = useRecensionerStore();
-const { recensioner } = storeToRefs(store);
-const { fetchrecensioner } = store;
-
-onMounted(fetchrecensioner);
-
-const visaFormular = ref(false);
-const läggTillRecension = ref(false);
-
-function toggleFormular() {
-	visaFormular.value = !visaFormular.value;
-	console.log("clicked");
-}
-
-function addrecension() {
-	läggTillRecension.value = !läggTillRecension.value;
-}
-
-const namn = ref("");
-const datum = ref(null);
-const recension1 = ref("");
-const recension2 = ref("");
-
-const fetchRecensioner = async () => {
-	try {
-		const response = await fetch("http://localhost:3000/recensioner");
-		recensioner.value = await response.json();
-	} catch (error) {
-		console.error("Fel vid hämtning:", error);
-	}
-};
-
-const submitForm = async () => {
-	try {
-		const response = await fetch("http://localhost:3000/recensioner", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				namn: namn.value,
-				datum: datum.value,
-				recensioner: [recension1.value, recension2.value],
-			}),
-		});
-		console.log("du har skickat din recension");
-		const result = await response.json();
-		console.log("Svar från servern:", result);
-		alert(result.message || "Tack för att du recenserar vårt boende");
-		recension1.value = "";
-		recension2.value = "";
-		namn.value = "";
-		datum.value = "";
-
-		fetchRecensioner();
-		visaFormular.value = false;
-	} catch (error) {
-		console.error("Fel vid skickning:", error);
-		alert("Något gick fel");
-	}
-};
-
-fetchRecensioner();
-</script>
-
 <template>
-	<div class="div-button">
-		<button type="button" class="add-button" @click="toggleFormular">
-			<p>+</p>
-		</button>
-	</div>
 	<div class="containerForButton">
 		<!-- Formuläret visas ovanpå knappen -->
-		<form v-if="visaFormular" class="recension-form" @submit.prevent="submitForm">
+		<form class="recension-form" @submit.prevent="submitForm">
 			<img src="../assets/bakåtpil.svg" alt="pil bakåt" class="img-arrow" @click="toggleFormular" />
 			<label for="namn" class="label">Namn:</label>
 			<input v-model="namn" type="text" id="namn" name="namn" required />
@@ -104,37 +31,88 @@ fetchRecensioner();
 	</div>
 </template>
 
+<script setup>
+import { ref, onMounted } from "vue";
+import { useRecensionerStore } from "../stores/store";
+import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const store = useRecensionerStore();
+const { recensioner } = storeToRefs(store);
+const { fetchrecensioner } = store;
+
+onMounted(fetchrecensioner);
+const namn = ref("");
+const datum = ref(null);
+const recension1 = ref("");
+const recension2 = ref("");
+const visaFormular = ref(false);
+const läggTillRecension = ref(false);
+
+function toggleFormular() {
+	router.back();
+	console.log("clicked");
+}
+
+function addrecension() {
+	läggTillRecension.value = !läggTillRecension.value;
+}
+
+const fetchRecensioner = async () => {
+	try {
+		const response = await fetch("http://localhost:3000/recensioner");
+		recensioner.value = await response.json();
+	} catch (error) {
+		console.error("Fel vid hämtning:", error);
+	}
+};
+
+const submitForm = async () => {
+	try {
+		const response = await fetch("http://localhost:3000/recensioner", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				namn: namn.value,
+				datum: datum.value,
+				recensioner: [recension1.value, recension2.value],
+			}),
+		});
+		console.log("du har skickat din recension");
+		const result = await response.json();
+		console.log("Svar från servern:", result);
+		alert(result.message || "Tack för att du recenserar vårt boende");
+		recension1.value = "";
+		recension2.value = "";
+		namn.value = "";
+		datum.value = "";
+		router.back();
+
+		fetchRecensioner();
+		visaFormular.value = false;
+	} catch (error) {
+		console.error("Fel vid skickning:", error);
+		alert("Något gick fel");
+	}
+};
+
+fetchRecensioner();
+</script>
+
 <style scoped>
 .containerForButton {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 	background-color: #f5f7fa;
-	height: 100vh;
+	height: fit-content;
 }
-
-.img-arrow {
-	width: 30px;
-	height: 30px;
-	cursor: pointer;
-}
-
-p {
-	font-size: x-large;
-}
-
 .recension-form {
-	/* position: absolute; */
-	top: 0;
-	left: 50%;
-	position: absolute;
-	transform: translateX(-50%);
 	width: 100%;
 	max-width: 100vh;
 	height: 90vh;
 	background-color: #ffffff;
 	padding: 2rem;
-	/* margin-top: 0; */
 	border-radius: 16px;
-	z-index: 5;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 	display: flex;
 	flex-direction: column;
@@ -147,6 +125,11 @@ p {
 	color: #000000;
 	width: 100%;
 	text-align: left;
+}
+
+.img-arrow {
+	height: 30px;
+	width: 30px;
 }
 
 input,

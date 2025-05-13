@@ -14,7 +14,8 @@
 				<div class="destinationer-rad">
 					<h3>{{ destination.destinationStad }}</h3>
 					<span class="destinationer-rad">
-						Hotell:  <p> {{ destination.destinationHotell }}</p>
+						Hotell:
+						<p>{{ destination.destinationHotell }}</p>
 					</span>
 				</div>
 				<div class="stad-img">
@@ -28,7 +29,6 @@
 		<p v-else>Det finns inga resor att boka för tillfället.</p>
 	</section>
 </template>
-
 
 <script setup>
 import { useRoute } from "vue-router";
@@ -53,7 +53,6 @@ const goBack = () => {
 	router.back();
 };
 </script>
-
 
 <style scoped>
 section {
@@ -118,11 +117,11 @@ h2 {
 .stad-img img {
 	width: 100%;
 	max-height: 240px;
-  border-radius: 12px;
+	border-radius: 12px;
 	object-fit: cover;
 	transition: transform 0.4s ease;
 	z-index: 10;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
 }
 
 .destinationer-kort:active img {
@@ -146,18 +145,18 @@ h2 {
 }
 
 .destinationer-rad span {
-  font-weight: 600;
+	font-weight: 600;
 	color: #2563eb;
 	min-width: 80px;
-  display: inline;
+	display: inline;
 }
 
 .destinationer-rad p {
-  display: inline;
-  color: #222;
-  font-weight: lighter;
-  font-size:medium;
-  margin-left: 15px;
+	display: inline;
+	color: #222;
+	font-weight: lighter;
+	font-size: medium;
+	margin-left: 15px;
 }
 
 .bokning-knapp {
@@ -172,11 +171,10 @@ h2 {
 	text-align: center;
 	margin-top: 1rem;
 	transition: background-color 0.2s ease;
-  width: 100%;
+	width: 100%;
 }
 
 .bokning-knapp:hover {
 	background-color: #1e40af;
 }
-
 </style>
