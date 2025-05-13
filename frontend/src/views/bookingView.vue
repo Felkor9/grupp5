@@ -6,18 +6,27 @@
         <img src="../assets/arrowback.svg" alt="Back arrow" class="icon" />
       </button>
     </div>
-    <div v-if="bokningar && bokningar.length > 0">
-      <div
+    <div v-if="valdBokning">
+      <h2>Bokning:</h2>
+      <p>{{ valdBokning.bokningId }}</p>
+      <p>Datum: {{ valdBokning.resorDatum.slice(0, 10) }}</p>
+      <p>Land: {{ valdBokning.resorLand }}</p>
+      <p>Stad: {{ valdBokning.destinationStad }}</p>
+      <p>Hotell: {{ valdBokning.destinationHotell }}</p>
+      <p>Platser: {{ valdBokning.bokningAntalPlatser }}</p>
+      <img :src="`/hotellimg/${valdBokning.destinationHotellBild_url}`" />
+    </div>
+    <!-- <div
         class="bokning-kort"
         v-for="bokning in bokningar"
         :key="bokning.bokningId"
-      >
-        <div class="bokning-rad">
-          <span class="bokning-rubrik">
+      > -->
+    <!-- <div class="bokning-rad"> -->
+    <!-- <span class="bokning-rubrik">
             {{ bokning.resorDatum.slice(0, 10) }}
-          </span>
-        </div>
-        <div class="bokning-rad">
+          </span> -->
+    <!-- </div> -->
+    <!-- <div class="bokning-rad">
           <span class="bokning-rubrik">Land:</span>
           <span class="bokning-varde">{{ bokning.resorLand }}</span>
         </div>
@@ -37,10 +46,10 @@
             />
           </div>
         </div>
-      </div>
-    </div>
+      </div> -->
+    <!-- </div> -->
 
-    <p v-else>Det finns inget här att visa. {{ bokningar }}</p>
+    <p v-else>Laddar bokningsinformation ...</p>
   </section>
 </template>
 
@@ -49,6 +58,11 @@ import { useBookingByUserStore } from "../stores/store";
 import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { watch, computed } from "vue";
+
+const props = defineProps({
+  id: [String, Number],
+});
 
 const store = useBookingByUserStore();
 const { bokningar } = storeToRefs(store);
@@ -62,6 +76,15 @@ onMounted(() => {
 });
 
 const router = useRouter();
+
+const valdBokning = computed(() =>
+  bokningar.value.find((b) => b.bokningId === Number(props.id))
+);
+
+//Funktion för att hålla koll på om bokningarna kommer med eller inte
+watch(bokningar, (newVal) => {
+  console.log("Uppdaterade bokningar:", newVal);
+});
 
 // Funktion för att hoppa ett steg bakåt i historiken
 const goBack = () => {

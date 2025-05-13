@@ -10,7 +10,7 @@ import bookingView from "./src/views/bookingView.vue";
 import BookView from "./src/views/bookView.vue";
 
 const routes = [
-  { path: "/", name: "homeView", component: homeView },
+  { path: "/home", name: "homeView", component: homeView },
   { path: "/profile", name: "profileView", component: profileView },
   // { path: "/destination", name: "destinationView", component: destinationView },
   { path: "/test", name: "testingView", component: testingView },
@@ -19,17 +19,25 @@ const routes = [
     name: "destinationView",
     component: destinationView,
   },
+  // { path: "/bokningar", name: "bookingView", component: bookingView },
   {
-    path: "/login",
+    path: "/bokningar/:id",
+    name: "bookingView",
+    component: bookingView,
+    props: true,
+  },
+  {
+    path: "/",
     name: "loginView",
     component: loginView,
   },
-  { path: "/bokningar", name: "bookingView", component: bookingView },
+
   {
     path: "/book",
     name: "Book",
     component: BookView,
   },
+
 ];
 
 const router = createRouter({

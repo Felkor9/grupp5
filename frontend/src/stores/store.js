@@ -118,7 +118,7 @@ export const useBookingByUserStore = defineStore("bookingByUser", () => {
     fetch(`http://localhost:3000/bokningar/full/${userId}`)
       .then((result) => result.json())
       .then((data) => {
-        bokningar.value = data.bokningar || [];
+        bokningar.value = data.bokning || [];
         console.log("Bokningar hämtade:", bokningar.value);
         error.value = null;
       });
