@@ -11,6 +11,10 @@
 				class="destinationer-kort"
 				v-for="destination in resordestinationer"
 				:key="destination.destinationId">
+				<div class="destinationer-rad" :style="`background-image: url('/stadimg/${destination.destinationStadBild_url}')`">
+					<span class="destinationer-hotell">
+            <h3>{{ destination.destinationStad }}</h3>
+						Hotell:  <p> {{ destination.destinationHotell }}</p>
 				<div class="destinationer-rad">
 					<h3>{{ destination.destinationStad }}</h3>
 					<span class="destinationer-rad">
@@ -19,6 +23,9 @@
 					</span>
 				</div>
 				<div class="stad-img">
+          <!-- <img
+						:src="`/stadimg/${destination.destinationStadBild_url}`"
+						style="max-width: 100%" /> -->
 					<img
 						:src="`/hotellimg/${destination.destinationHotellBild_url}`"
 						style="max-width: 100%" />
@@ -114,9 +121,17 @@ h2 {
 	transform: scale(0.99);
 }
 
+.stad-img{
+  overflow: hidden;
+  position: relative;
+}
+
 .stad-img img {
 	width: 100%;
 	max-height: 240px;
+  /* margin: auto; */
+  /* height: auto; */
+  border-radius: 12px;
 	border-radius: 12px;
 	object-fit: cover;
 	transition: transform 0.4s ease;
@@ -128,6 +143,13 @@ h2 {
 	transform: scale(1.03);
 }
 
+.destinationer-rad h3 {
+	font-size: 1.5rem;
+	color: #1e3a8a;
+	margin: 0;
+  opacity: 10;
+}
+
 .destinationer-rad {
 	display: flex;
 	flex-direction: column;
@@ -136,8 +158,32 @@ h2 {
 	font-size: 1.1rem;
 	color: #2563eb;
 	min-width: 80px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding:0.5rem;
+  border-radius: 12px;
 }
 
+.destinationer-hotell{
+  font-weight: 600;
+	color: #2563eb;
+	min-width: 80px;
+  display: inline;
+  background-color: #ffffff;
+  opacity: 0.7;
+  border-radius: 12px;
+  padding:10px;
+}
+
+.destinationer-rad p {
+  display: inline;
+  color: #222;
+  font-weight: lighter;
+  font-size:medium;
+  margin-left: 15px;
+  opacity: 10;
+  }
 .destinationer-rad h3 {
 	font-size: 1.5rem;
 	color: #1e3a8a;
@@ -157,6 +203,7 @@ h2 {
 	font-weight: lighter;
 	font-size: medium;
 	margin-left: 15px;
+
 }
 
 .bokning-knapp {
