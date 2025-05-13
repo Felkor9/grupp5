@@ -21,13 +21,15 @@ const bokningarRoutes = require("./routes/bokningarRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 const destinationRoutes = require("./routes/destinationRoutes");
+const authRoutes = require('./routes/authRoutes')
 
 app.use(resorRoutes);
 app.use(destinationRoutes);
-
 app.use(userRoutes);
-
 app.use(bokningarRoutes);
 app.use(recensionerRoutes);
+app.use(authRoutes);
+
+
 
 app.listen(port, () => console.log(`Example listening on port ${port}`));

@@ -5,6 +5,7 @@ import profileView from "./src/views/profileView.vue";
 import homeView from "./src/views/homeView.vue";
 import destinationView from "./src/views/destinationView.vue";
 import testingView from "./src/views/testingView.vue";
+import loginView from "./src/views/loginView.vue";
 
 const routes = [
   { path: "/", name: "homeView", component: homeView },
@@ -15,6 +16,11 @@ const routes = [
     path: "/resadestination/:id",
     name: "destinationView",
     component: destinationView,
+  },
+  {
+    path: "/login",
+    name: "loginView",
+    component: loginView,
   },
 ];
 

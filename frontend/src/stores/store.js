@@ -109,3 +109,11 @@ export const useResaDestinationStore = defineStore("resadestination", () => {
 //   }
 //   return { resadestination, fetchResaDestination, resordestinationer };
 // });
+
+
+export const useAuthStore = defineStore("auhtentication", () => {
+
+
+
+  return { };
+});
