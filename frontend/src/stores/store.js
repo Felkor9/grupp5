@@ -97,6 +97,25 @@ export const useResaDestinationStore = defineStore("resadestination", () => {
   return { resadestination, fetchResaDestination, resordestinationer };
 });
 
+
+//  function fetchResaDestination(id) {
+//     fetch(`http://localhost:3000/resadestination/${id}`)
+//       .then((result) => result.json())
+//       .then((data) => {
+//         resor.value = data.resor || [];
+//         console.log(data.resor);
+//         // console.log(data.resadestination);
+//       });
+//   }
+//   return { resadestination, fetchResaDestination, resordestinationer };
+// });
+
+
+export const useAuthStore = defineStore("auhtentication", () => {
+
+
+
+  return { };
 //Visa bokningar på vald user
 export const useBookingByUserStore = defineStore("bookingByUser", () => {
   const bokningar = ref([]);
