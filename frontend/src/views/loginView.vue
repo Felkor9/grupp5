@@ -61,7 +61,7 @@ async function loggaIn() {
 			console.log("Inloggning lyckades");
 			// Här kan du t.ex. omdirigera till en annan sida eller uppdatera UI
 			// router.push('/dashboard'); // Om du använder vue-router
-			router.push("/");
+			router.push("/home");
 		} else {
 			// Misslyckad inloggning
 			username.value = "";
