@@ -35,7 +35,7 @@ exports.createUser = async (req, res) => {
   }
 
   try {
-    await userService.createUser(userName, userEmail);
+    await userService.createUser(userName, userEmail, userPassword);
     return res.status(201).json({
       success: true,
       error: "",

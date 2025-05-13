@@ -5,6 +5,7 @@ import profileView from "./src/views/profileView.vue";
 import homeView from "./src/views/homeView.vue";
 import destinationView from "./src/views/destinationView.vue";
 import testingView from "./src/views/testingView.vue";
+import loginView from "./src/views/loginView.vue";
 import bookingView from "./src/views/bookingView.vue";
 
 const routes = [
@@ -24,6 +25,12 @@ const routes = [
     component: bookingView,
     props: true,
   },
+  {
+    path: "/login",
+    name: "loginView",
+    component: loginView,
+  },
+  { path: "/bokningar", name: "bookingView", component: bookingView },
 ];
 
 const router = createRouter({
