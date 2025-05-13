@@ -97,7 +97,6 @@ export const useResaDestinationStore = defineStore("resadestination", () => {
   return { resadestination, fetchResaDestination, resordestinationer };
 });
 
-
 //  function fetchResaDestination(id) {
 //     fetch(`http://localhost:3000/resadestination/${id}`)
 //       .then((result) => result.json())
@@ -109,8 +108,6 @@ export const useResaDestinationStore = defineStore("resadestination", () => {
 //   }
 //   return { resadestination, fetchResaDestination, resordestinationer };
 // });
-
-
 
 //Visa bokningar på vald user
 export const useBookingByUserStore = defineStore("bookingByUser", () => {
@@ -127,4 +124,41 @@ export const useBookingByUserStore = defineStore("bookingByUser", () => {
       });
   }
   return { bokningar, getFullBookingByUser, error };
+});
+
+// Spara valt datum från kalendern
+export const useSelectedDateStore = defineStore("selectedDate", () => {
+  const selectedDate = ref(null);
+  const numberOfPeople = ref(1); // ✅ Lägg till
+
+  function setDate(date) {
+    selectedDate.value = date;
+    localStorage.setItem("selectedDate", date.toISOString());
+  }
+
+  function setNumberOfPeople(n) {
+    numberOfPeople.value = n;
+    localStorage.setItem("numberOfPeople", n.toString());
+  }
+
+  function loadFromStorage() {
+    const savedDate = localStorage.getItem("selectedDate");
+    const savedPeople = localStorage.getItem("numberOfPeople");
+
+    if (savedDate) {
+      selectedDate.value = new Date(savedDate);
+    }
+
+    if (savedPeople) {
+      numberOfPeople.value = parseInt(savedPeople);
+    }
+  }
+
+  return {
+    selectedDate,
+    numberOfPeople,
+    setDate,
+    setNumberOfPeople,
+    loadFromStorage,
+  };
 });

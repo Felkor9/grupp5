@@ -7,6 +7,7 @@ import destinationView from "./src/views/destinationView.vue";
 import loginView from "./src/views/loginView.vue";
 import bookingView from "./src/views/bookingView.vue";
 import recensionView from "./src/views/recensionView.vue";
+import BookView from "./src/views/bookView.vue";
 
 const routes = [
   { path: "/home", name: "homeView", component: homeView },
@@ -30,12 +31,20 @@ const routes = [
     name: "loginView",
     component: loginView,
   },
+
   {
     path: "/recension",
     name: "recensionView",
     component: recensionView,
   },
   // { path: "/bokningar", name: "bookingView", component: bookingView },
+
+  {
+    path: "/book",
+    name: "Book",
+    component: BookView,
+  },
+
 ];
 
 const router = createRouter({
