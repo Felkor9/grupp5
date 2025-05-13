@@ -2,7 +2,7 @@
 	<nav class="navigation-bar">
 		<ul class="nav-lista">
 			<li class="lista-knapp">
-				<router-link class="router-link" to="/">Home</router-link>
+				<router-link class="router-link" to="/home">Home</router-link>
 			</li>
 			<li class="lista-knapp">
 				<router-link class="router-link" to="/profile">Min Profil</router-link>
