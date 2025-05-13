@@ -12,14 +12,10 @@
 				v-for="destination in resordestinationer"
 				:key="destination.destinationId">
 				<div class="destinationer-rad">
-					<!-- <div class="destinationer-varde"> -->
 					<h3>{{ destination.destinationStad }}</h3>
-					<!-- </div> -->
-					<div class="destinationer-rad">
-						<!-- <div class="destinationer-varde"> -->
-						<b>Hotell: </b>{{ destination.destinationHotell }}
-						<!-- </div> -->
-					</div>
+					<span class="destinationer-rad">
+						Hotell:  <p> {{ destination.destinationHotell }}</p>
+					</span>
 				</div>
 				<div class="stad-img">
 					<img
@@ -32,6 +28,8 @@
 		<p v-else>Det finns inga resor att boka för tillfället.</p>
 	</section>
 </template>
+
+
 <script setup>
 import { useRoute } from "vue-router";
 import { useResaDestinationStore } from "../stores/store";
@@ -55,6 +53,8 @@ const goBack = () => {
 	router.back();
 };
 </script>
+
+
 <style scoped>
 section {
 	padding: 2rem 1rem;
@@ -115,20 +115,14 @@ h2 {
 	transform: scale(0.99);
 }
 
-.stad-img {
-	width: 100%;
-	border-radius: 12px;
-	object-fit: cover;
-	max-height: 240px;
-	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
-}
-
 .stad-img img {
 	width: 100%;
-	height: 50%;
+	max-height: 240px;
+  border-radius: 12px;
 	object-fit: cover;
 	transition: transform 0.4s ease;
 	z-index: 10;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
 }
 
 .destinationer-kort:active img {
@@ -138,22 +132,32 @@ h2 {
 .destinationer-rad {
 	display: flex;
 	flex-direction: column;
-	/* justify-content: center; */
+	justify-content: center;
 	gap: 0.5rem;
 	font-size: 1.1rem;
-	color: #333;
+	color: #2563eb;
+	min-width: 80px;
 }
 
 .destinationer-rad h3 {
-	font-size: 1.25rem;
+	font-size: 1.5rem;
 	color: #1e3a8a;
 	margin: 0;
 }
 
 .destinationer-rad span {
-	font-size: 1rem;
-	color: #444;
-	line-height: 1.4;
+  font-weight: 600;
+	color: #2563eb;
+	min-width: 80px;
+  display: inline;
+}
+
+.destinationer-rad p {
+  display: inline;
+  color: #222;
+  font-weight: lighter;
+  font-size:medium;
+  margin-left: 15px;
 }
 
 .bokning-knapp {
@@ -168,16 +172,11 @@ h2 {
 	text-align: center;
 	margin-top: 1rem;
 	transition: background-color 0.2s ease;
+  width: 100%;
 }
 
 .bokning-knapp:hover {
 	background-color: #1e40af;
 }
 
-p {
-	text-align: center;
-	color: #888;
-	font-size: 1rem;
-	margin-top: 2rem;
-}
 </style>
