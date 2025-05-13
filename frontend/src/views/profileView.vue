@@ -33,13 +33,10 @@
           <span class="bokning-rubrik">Platser:</span>
           <span class="bokning-varde">{{ bokning.bokningAntalPlatser }}</span>
         </div>
-        <!-- <button class="bokning-knapp">
+        <button class="bokning-knapp">
           <router-link class="router" :to="`/bokningar/${bokning.bokningId}`"
             >Visa mer</router-link
           >
-        </button> -->
-        <button class="bokning-knapp" @click="visaMer(bokning.bokningId)">
-          Visa mer
         </button>
       </div>
     </div>
@@ -56,17 +53,11 @@ import { useRouter } from "vue-router";
 
 const store = useBokningarStore();
 const { bokningar } = storeToRefs(store);
-const { fetchbokningar } = store;
+const { fetchAllaBokningar } = store;
 
-onMounted(fetchbokningar);
+onMounted(fetchAllaBokningar);
 
 const router = useRouter();
-
-//Skicka med rätt id med knappen.
-const visaMer = (id) => {
-  console.log("Visar bokning med ID:", id);
-  router.push(`/bokningar/${id}`);
-};
 
 // Funktion för att hoppa ett steg bakåt i historiken
 const goBack = () => {

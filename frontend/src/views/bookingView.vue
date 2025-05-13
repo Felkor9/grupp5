@@ -6,27 +6,22 @@
         <img src="../assets/arrowback.svg" alt="Back arrow" class="icon" />
       </button>
     </div>
-    <div v-if="valdBokning">
-      <h2>Bokning:</h2>
-      <p>{{ valdBokning.bokningId }}</p>
-      <p>Datum: {{ valdBokning.resorDatum.slice(0, 10) }}</p>
-      <p>Land: {{ valdBokning.resorLand }}</p>
-      <p>Stad: {{ valdBokning.destinationStad }}</p>
-      <p>Hotell: {{ valdBokning.destinationHotell }}</p>
-      <p>Platser: {{ valdBokning.bokningAntalPlatser }}</p>
-      <img :src="`/hotellimg/${valdBokning.destinationHotellBild_url}`" />
-    </div>
-    <!-- <div
+    <div v-if="bokningar && bokningar.length > 0">
+      <div
         class="bokning-kort"
         v-for="bokning in bokningar"
         :key="bokning.bokningId"
-      > -->
-    <!-- <div class="bokning-rad"> -->
-    <!-- <span class="bokning-rubrik">
+      >
+        <div class="bokning-rad">
+          <span class="bokning-rubrik">
             {{ bokning.resorDatum.slice(0, 10) }}
-          </span> -->
-    <!-- </div> -->
-    <!-- <div class="bokning-rad">
+          </span>
+        </div>
+        <div class="bokning-rad">
+          <span class="bokning-rubrik">Namn:</span>
+          <span class="bokning-varde">{{ bokning.userName }}</span>
+        </div>
+        <div class="bokning-rad">
           <span class="bokning-rubrik">Land:</span>
           <span class="bokning-varde">{{ bokning.resorLand }}</span>
         </div>
@@ -35,21 +30,13 @@
           <span class="bokning-varde">{{ bokning.destinationStad }}</span>
         </div>
         <div class="bokning-rad">
-          <span class="bokning-rubrik">Hotell:</span>
-          <span class="bokning-varde">{{ bokning.destinationHotell }}</span>
+          <span class="bokning-rubrik">Platser:</span>
+          <span class="bokning-varde">{{ bokning.bokningAntalPlatser }}</span>
         </div>
-        <div class="bokning-rad">
-          <div class="stad-img">
-            <img
-              :src="`/hotellimg/${bokning.destinationHotellBild_url}`"
-              style="max-width: 100%"
-            />
-          </div>
-        </div>
-      </div> -->
-    <!-- </div> -->
-
-    <p v-else>Laddar bokningsinformation ...</p>
+        <button class="bokning-knapp"></button>
+      </div>
+    </div>
+    <p v-else>Laddar...</p>
   </section>
 </template>
 
@@ -67,19 +54,10 @@ const props = defineProps({
 const store = useBookingByUserStore();
 const { bokningar } = storeToRefs(store);
 const { getFullBookingByUser } = store;
-const userId = 1;
-// const { fetchbokningar } = store;
-
-onMounted(() => {
-  getFullBookingByUser(userId);
-  console.log("Bokningar från komponenten:", bokningar.value);
-});
-
+// const userId = 1;
 const router = useRouter();
 
-const valdBokning = computed(() =>
-  bokningar.value.find((b) => b.bokningId === Number(props.id))
-);
+onMounted(getFullBookingByUser);
 
 //Funktion för att hålla koll på om bokningarna kommer med eller inte
 watch(bokningar, (newVal) => {
