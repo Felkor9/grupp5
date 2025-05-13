@@ -5,7 +5,7 @@
 				<router-link class="router" to="/">
 					<img src="../assets/explore.svg" alt="" class="icon-menubar" />
 				</router-link>
-				<router-link class="router" to="/">Utforska</router-link>
+				<router-link class="router" to="/home">Utforska</router-link>
 			</div>
 			<div class="list-item">
 				<router-link class="router" to="/test">

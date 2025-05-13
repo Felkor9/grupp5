@@ -9,7 +9,7 @@ import loginView from "./src/views/loginView.vue";
 import bookingView from "./src/views/bookingView.vue";
 
 const routes = [
-  { path: "/", name: "homeView", component: homeView },
+  { path: "/home", name: "homeView", component: homeView },
   { path: "/profile", name: "profileView", component: profileView },
   // { path: "/destination", name: "destinationView", component: destinationView },
   { path: "/test", name: "testingView", component: testingView },
@@ -26,7 +26,7 @@ const routes = [
     props: true,
   },
   {
-    path: "/login",
+    path: "/",
     name: "loginView",
     component: loginView,
   },
