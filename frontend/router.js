@@ -41,10 +41,9 @@ const routes = [
 
   {
     path: "/book",
-    name: "Book",
+    name: "book",
     component: BookView,
   },
-
 ];
 
 const router = createRouter({

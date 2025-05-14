@@ -30,9 +30,13 @@
             :src="`/hotellimg/${destination.destinationHotellBild_url}`"
             style="max-width: 100%"
           />
-          <button @click="bokaHotel(hotel)" class="bokning-knapp">
+          <router-link
+            class="bokning-knapp"
+            :to="{ name: 'book' }"
+            @click="bokaHotel(hotel)"
+          >
             Boka detta hotell
-          </button>
+          </router-link>
         </div>
 
         <div class="container">
@@ -45,33 +49,33 @@
 </template>
 
 <script setup>
-import { useRoute } from "vue-router";
-import { useResaDestinationStore } from "../stores/store";
-import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { storeToRefs } from "pinia";
+
 import recensionComponent from "../components/recensionComponent.vue";
-import { useSelectedHotelStore } from "../stores/store";
+import {
+  useResaDestinationStore,
+  useSelectedHotelStore,
+} from "../stores/store";
 
 const route = useRoute();
-const store = useResaDestinationStore();
-// const { destination } = storeToRefs(store);
-// const { fetchResaDestination } = store;
-const { resadestination, resordestinationer } = storeToRefs(store);
-onMounted(() => {
-  console.log("Route params", route.params);
-  store.fetchResaDestination(route.params.id);
-});
-
 const router = useRouter();
+
+const destinationStore = useResaDestinationStore();
 const selectedHotelStore = useSelectedHotelStore();
 
-// Funktion för att hoppa ett steg bakåt i historiken
+const { resadestination, resordestinationer } = storeToRefs(destinationStore);
+
+onMounted(() => {
+  console.log("Route params:", route.params);
+  destinationStore.fetchResaDestination(route.params.id);
+});
+
 const goBack = () => {
   router.back();
 };
 
-// Boka hotel
 function bokaHotel(hotel) {
   selectedHotelStore.setHotel({
     namn: hotel.namn,
@@ -79,8 +83,6 @@ function bokaHotel(hotel) {
     land: hotel.land,
     bild: hotel.bild,
   });
-
-  router.push("/book");
 }
 </script>
 
@@ -215,22 +217,21 @@ h2 {
 }
 
 .bokning-knapp {
-  background-color: #2563eb;
+  background-color: #007bff;
   color: white;
+  padding: 0.75em 1.5em;
   border: none;
-  padding: 0.75rem 1.25rem;
-  border-radius: 12px;
+  border-radius: 8px;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
   text-align: center;
-  margin-top: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.2s ease;
-  width: 100%;
-  display: inline;
-  min-width: 80px;
+  margin: 1rem auto;
+  display: block;
 }
-
 .bokning-knapp:hover {
   background-color: #1e40af;
 }

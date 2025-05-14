@@ -216,6 +216,10 @@ onMounted(() => {
     selectedPeople.value = dateStore.numberOfPeople;
   }
 });
+
+const goBack = () => {
+  router.back();
+};
 </script>
 
 <style scoped>
