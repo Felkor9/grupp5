@@ -1,35 +1,4 @@
 <template>
-  <section>
-    <div class="container-heading">
-      <h2>Destination</h2>
-      <button @click="goBack" class="goBackButton">
-        <img src="../assets/arrowback.svg" alt="Back arrow" class="icon" />
-      </button>
-    </div>
-    <div v-if="resordestinationer && resordestinationer.length > 0">
-      <div
-        class="destinationer-kort"
-        v-for="destination in resordestinationer"
-        :key="destination.destinationId"
-      >
-        <div class="destinationer-rad">
-          <h3>{{ destination.destinationStad }}</h3>
-          <span class="destinationer-rad">
-            Hotell:
-            <p>{{ destination.destinationHotell }}</p>
-          </span>
-        </div>
-        <div class="stad-img">
-          <img
-            :src="`/hotellimg/${destination.destinationHotellBild_url}`"
-            style="max-width: 100%"
-          />
-          <button class="bokning-knapp">Boka detta hotell</button>
-        </div>
-      </div>
-    </div>
-    <p v-else>Det finns inga resor att boka för tillfället.</p>
-  </section>
 	<section>
 		<div class="container-heading">
 			<h2>Destination</h2>
@@ -42,21 +11,13 @@
 				class="destinationer-kort"
 				v-for="destination in resordestinationer"
 				:key="destination.destinationId">
-				<div
-					class="destinationer-rad"
-					:style="`background-image: url('/stadimg/${destination.destinationStadBild_url}')`">
+				<div class="destinationer-rad" :style="`background-image: url('/stadimg/${destination.destinationStadBild_url}')`">
 					<span class="destinationer-hotell">
 						<h3>{{ destination.destinationStad }}</h3>
 						Hotell:
 						<p>{{ destination.destinationHotell }}</p>
 					</span>
-					<div class="destinationer-rad">
-						<h3>{{ destination.destinationStad }}</h3>
-						<span class="destinationer-rad">
-							Hotell:
-							<p>{{ destination.destinationHotell }}</p>
-						</span>
-					</div>
+				</div>
 					<div class="stad-img">
 						<!-- <img
 						:src="`/stadimg/${destination.destinationStadBild_url}`"
@@ -66,7 +27,7 @@
 							style="max-width: 100%" />
 						<button class="bokning-knapp">Boka detta hotell</button>
 					</div>
-				</div>
+
 				<div class="container">
 					<recensionComponent class="skriva-recensioner" />
 				</div>
@@ -131,7 +92,7 @@ section {
 }
 
 .icon {
-  width: 24px; /* Justera storleken på din ikon här */
+  width: 24px;
   height: 24px;
   transition: transform 0.3s ease;
 }
@@ -175,16 +136,7 @@ h2 {
   border-radius: 12px;
   object-fit: cover;
   transition: transform 0.4s ease;
-  z-index: 10;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
 	width: 100%;
-	max-height: 240px;
-	/* margin: auto; */
-	/* height: auto; */
-	border-radius: 12px;
-	border-radius: 12px;
-	object-fit: cover;
-	transition: transform 0.4s ease;
 	z-index: 10;
 	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
 }
@@ -193,23 +145,10 @@ h2 {
   transform: scale(1.03);
 }
 
-.destinationer-rad h3 {
-	font-size: 1.5rem;
-	color: #1e3a8a;
-	margin: 0;
-	opacity: 10;
-}
 
 .destinationer-rad {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 0.5rem;
-  font-size: 1.1rem;
-  color: #2563eb;
-  min-width: 80px;
-	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	gap: 0.5rem;
 	font-size: 1.1rem;
@@ -228,19 +167,12 @@ h2 {
 	min-width: 80px;
 	display: inline;
 	background-color: #ffffff;
-	opacity: 0.7;
+	opacity: 0.8;
 	border-radius: 12px;
 	padding: 10px;
 }
 
-.destinationer-rad p {
-	display: inline;
-	color: #222;
-	font-weight: lighter;
-	font-size: medium;
-	margin-left: 15px;
-	opacity: 10;
-}
+
 .destinationer-rad h3 {
   font-size: 1.5rem;
   color: #1e3a8a;
@@ -263,33 +195,6 @@ h2 {
 }
 
 .bokning-knapp {
-  background-color: #2563eb;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.25rem;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  text-align: center;
-  margin-top: 1rem;
-  transition: background-color 0.2s ease;
-  width: 100%;
-	font-weight: 600;
-	color: #2563eb;
-	min-width: 80px;
-	display: inline;
-}
-
-.destinationer-rad p {
-	display: inline;
-	color: #222;
-	font-weight: lighter;
-	font-size: medium;
-	margin-left: 15px;
-}
-
-.bokning-knapp {
 	background-color: #2563eb;
 	color: white;
 	border: none;
@@ -302,6 +207,8 @@ h2 {
 	margin-top: 1rem;
 	transition: background-color 0.2s ease;
 	width: 100%;
+	display: inline;
+	min-width: 80px;
 }
 
 .bokning-knapp:hover {
