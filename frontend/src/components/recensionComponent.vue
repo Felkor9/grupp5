@@ -2,6 +2,7 @@
 import { useRecensionerStore } from "../stores/store";
 import { storeToRefs } from "pinia";
 import { onMounted, ref } from "vue";
+import StarRating from "vue-star-rating";
 
 const store = useRecensionerStore();
 const { recensioner } = storeToRefs(store);
@@ -72,6 +73,12 @@ onMounted(fetchrecensioner);
 		<ul>
 			<li class="lista-recensioner" v-for="recension in recensioner" :key="recension.id">
 				<strong>{{ recension.namn }}</strong>
+				<StarRating
+					:rating="recension.betyg"
+					:read-only="true"
+					:star-size="24"
+					:show-rating="false"
+					class="stars" />
 				<div v-for="(rec, index) in recension.recensioner" :key="index">
 					<p>{{ rec }}</p>
 				</div>
@@ -106,6 +113,11 @@ h2 {
 }
 ul {
 	list-style-type: none;
+}
+
+.stars {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .lista-recensioner {

@@ -14,12 +14,13 @@ exports.getRecensioner = async (req, res) => {
 
 //Skapa ny recension
 exports.createRecension = async (req, res) => {
-  const { namn, datum, recensioner } = req.body;
+  const { namn, datum, betyg, recensioner } = req.body;
 
   try {
     const newRecension = new RecensionerModel({
       namn: namn,
       datum: datum,
+      betyg: betyg,
       recensioner: recensioner,
     });
     const insertedRecension = await newRecension.save();

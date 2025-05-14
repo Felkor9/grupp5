@@ -9,6 +9,11 @@ const RecensionSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
+    betyg: {
+        type: Number,
+        required: true
+    }
+    ,
     recensioner: {
         type: Array,
         required: true
