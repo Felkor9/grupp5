@@ -18,6 +18,9 @@ import navbarMenu from "./components/navbarMenu.vue";
 import FeelHeader from "./components/FeelHeader.vue";
 import { ref } from "vue";
 import MenuBarComponent from "./components/MenuBarComponent.vue";
+import { useAuthStore } from "./stores/store";
+const auth = useAuthStore();
+auth.init();
 </script>
 
 <style>

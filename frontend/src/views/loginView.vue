@@ -28,7 +28,9 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useAuthStore } from "../stores/store";
 
+const auth = useAuthStore();
 const router = useRouter();
 const username = ref("");
 const password = ref("");
@@ -57,6 +59,11 @@ async function loggaIn() {
 
 		if (data.statusLogin === "OK") {
 			// Lyckad inloggning
+
+			auth.login({
+				id: data.userId,
+				username: data.username,
+			});
 			loginStatus.value = "OK";
 			console.log("Inloggning lyckades");
 			// Här kan du t.ex. omdirigera till en annan sida eller uppdatera UI
