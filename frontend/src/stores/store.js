@@ -106,7 +106,6 @@ export const useResaDestinationStore = defineStore("resadestination", () => {
   return { resadestination, fetchResaDestination, resordestinationer };
 });
 
-
 //  function fetchResaDestination(id) {
 //     fetch(`http://localhost:3000/resadestination/${id}`)
 //       .then((result) => result.json())
@@ -171,4 +170,15 @@ export const useSelectedDateStore = defineStore("selectedDate", () => {
     setNumberOfPeople,
     loadFromStorage,
   };
+});
+
+// Spara valt hotel (+ land, stad, bild)
+export const useSelectedHotelStore = defineStore("selectedHotel", () => {
+  const hotel = ref(null);
+
+  function setHotel(data) {
+    hotel.value = data;
+  }
+
+  return { hotel, setHotel };
 });
