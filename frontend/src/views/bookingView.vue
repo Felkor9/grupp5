@@ -1,39 +1,53 @@
 <template>
-	<section>
-		<div class="container-heading">
-			<h2>Min bokning</h2>
-			<button @click="goBack" class="goBackButton">
-				<img src="../assets/arrowback.svg" alt="Back arrow" class="icon" />
-			</button>
-		</div>
-		<div v-if="bokningar && bokningar.length > 0">
-			<div class="bokning-kort" v-for="bokning in bokningar" :key="bokning.bokningId">
-				<div class="bokning-rad">
-					<span class="bokning-rubrik">
-						{{ bokning.resorDatum.slice(0, 10) }}
-					</span>
-				</div>
-				<div class="bokning-rad">
+  <section>
+    <div class="container-heading">
+      <h2>Min bokning</h2>
+      <button @click="goBack" class="goBackButton">
+        <img src="../assets/arrowback.svg" alt="Back arrow" class="icon" />
+      </button>
+    </div>
+    <div v-if="bokningar && bokningar.length > 0">
+      <div
+        class="bokning-kort"
+        v-for="bokning in bokningar"
+        :key="bokning.bokningId"
+      >
+        <div class="bokning-rad">
+          <span class="bokning-rubrik">
+            {{ bokning.resorDatum.slice(0, 10) }}
+          </span>
+        </div>
+        <!-- <div class="bokning-rad">
 					<span class="bokning-rubrik">Namn:</span>
 					<span class="bokning-varde">{{ bokning.userName }}</span>
-				</div>
-				<div class="bokning-rad">
-					<span class="bokning-rubrik">Land:</span>
-					<span class="bokning-varde">{{ bokning.resorLand }}</span>
-				</div>
-				<div class="bokning-rad">
-					<span class="bokning-rubrik">Stad:</span>
-					<span class="bokning-varde">{{ bokning.destinationStad }}</span>
-				</div>
-				<div class="bokning-rad">
-					<span class="bokning-rubrik">Platser:</span>
-					<span class="bokning-varde">{{ bokning.bokningAntalPlatser }}</span>
-				</div>
-				<button class="bokning-knapp"></button>
-			</div>
-		</div>
-		<p v-else>Laddar...</p>
-	</section>
+				</div> -->
+        <div class="bokning-rad">
+          <span class="bokning-rubrik">Land:</span>
+          <span class="bokning-varde">{{ bokning.resorLand }}</span>
+        </div>
+        <div class="bokning-rad">
+          <span class="bokning-rubrik">Stad:</span>
+          <span class="bokning-varde">{{ bokning.destinationStad }}</span>
+        </div>
+        <div class="bokning-rad">
+          <span class="bokning-rubrik">Hotell:</span>
+          <span class="bokning-varde">{{ bokning.destinationHotell }}</span>
+        </div>
+        <div class="bokning-rad">
+          <span class="bokning-rubrik">Antal bokade platser:</span>
+          <span class="bokning-varde">{{ bokning.bokningAntalPlatser }}</span>
+        </div>
+        <div class="bokning-img">
+          <img
+            :src="`/hotellimg/${bokning.destinationHotellBild_url}`"
+            alt=""
+            style="max-width: 100%"
+          />
+        </div>
+      </div>
+    </div>
+    <p v-else>Laddar...</p>
+  </section>
 </template>
 
 <script setup>
@@ -53,133 +67,142 @@ const userId = route.params.userId; // Detta är från URL
 console.log("User ID från URL:", userId); // För att kontrollera om det är rätt
 
 onMounted(() => {
-	if (userId) {
-		// Skicka förfrågan för att hämta bokningarna för denna userId
-		getFullBookingByUser(userId);
-	} else {
-		console.warn("Ingen userId finns i URL!");
-	}
+  if (userId) {
+    // Skicka förfrågan för att hämta bokningarna för denna userId
+    getFullBookingByUser(userId);
+  } else {
+    console.warn("Ingen userId finns i URL!");
+  }
 });
 
 watch(bokningar, (newVal) => {
-	console.log("Uppdaterade bokningar:", newVal);
+  console.log("Uppdaterade bokningar:", newVal);
 });
 
 const goBack = () => {
-	router.back();
+  router.back();
 };
 </script>
 
 <style scoped>
 .container-heading {
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: center;
-	position: relative;
-	align-items: center;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  position: relative;
+  align-items: center;
 }
 
 .goBackButton {
-	background: none;
-	border: none;
-	padding: 0;
-	cursor: pointer;
-	position: absolute;
-	top: 15%;
-	left: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 15%;
+  left: 0;
+}
+
+.bokning-img img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  max-height: 240px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
 }
 
 .icon {
-	width: 24px; /* Justera storleken på din ikon här */
-	height: 24px;
-	transition: transform 0.3s ease;
+  width: 24px; /* Justera storleken på din ikon här */
+  height: 24px;
+  transition: transform 0.3s ease;
 }
 
 .goBackButton:hover .icon {
-	transform: scale(1.1); /* Lite förstoring när man hovrar över knappen */
+  transform: scale(1.1); /* Lite förstoring när man hovrar över knappen */
 }
 
 section {
-	padding: 1.5rem 1rem;
-	background-color: #f5f7fa;
-	min-height: 100vh;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 1.5rem 1rem;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
 }
 
 h2 {
-	font-size: 2rem;
-	margin-bottom: 2rem;
-	color: #1e3a8a;
-	text-align: center;
-	font-weight: 700;
-	letter-spacing: 1px;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #1e3a8a;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .bokning-kort {
-	background-color: #fff;
-	border-radius: 14px;
-	padding: 1.25rem 1rem;
-	margin-bottom: 1rem;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-	transition: transform 0.2s ease;
+  background-color: #fff;
+  border-radius: 14px;
+  padding: 1.25rem 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s ease;
 }
 
 .bokning-kort:active {
-	transform: scale(0.98);
+  transform: scale(0.98);
 }
 
 .bokning-rad {
-	display: flex;
-	justify-content: space-between;
-	font-size: 1rem;
-	color: #444;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: #444;
 }
 
 .bokning-label {
-	font-weight: 600;
-	color: #666;
-	flex: 1;
+  font-weight: 600;
+  color: #666;
+  flex: 1;
 }
 
 .bokning-varde {
-	flex: 2;
-	text-align: right;
-	color: #222;
+  flex: 2;
+  text-align: right;
+  color: #222;
 }
 
 .bokning-knapp {
-	background-color: #2563eb;
-	color: white;
-	border: none;
-	padding: 0.75rem 1.25rem;
-	border-radius: 12px;
-	cursor: pointer;
-	font-size: 1rem;
-	font-weight: 600;
-	text-align: center;
-	margin-top: 1rem;
-	transition: background-color 0.2s ease;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 1rem;
+  transition: background-color 0.2s ease;
 }
 
 .bokning-knapp:hover {
-	background-color: #1e40af;
+  background-color: #1e40af;
 }
 
 .router {
-	color: white;
-	text-decoration: none;
-	display: inline-block;
-	width: 100%;
-	height: 100%;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
 }
 
 p {
-	text-align: center;
-	color: #888;
-	font-size: 1rem;
-	margin-top: 2rem;
+  text-align: center;
+  color: #888;
+  font-size: 1rem;
+  margin-top: 2rem;
 }
 </style>
