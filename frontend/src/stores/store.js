@@ -178,40 +178,43 @@ export const useSelectedDateStore = defineStore("selectedDate", () => {
 // stores/authStore.js
 
 export const useAuthStore = defineStore("auth", () => {
-	const isLoggedIn = ref(false);
-	const user = ref(null);
+  const isLoggedIn = ref(false);
+  const user = ref(null);
 
-	const login = (userData) => {
-		isLoggedIn.value = true;
-		user.value = userData;
-		// LocalStorage om du vill spara tillfälligt
+  const login = (userData) => {
+    isLoggedIn.value = true;
+    user.value = userData;
+    // LocalStorage om du vill spara tillfälligt
     localStorage.setItem("authUser", JSON.stringify(userData));
     console.log('User saved in localStorage:', JSON.parse(localStorage.getItem("authUser")));
 
-	};
+  };
 
-	const logout = () => {
-		isLoggedIn.value = false;
-		user.value = null;
-		localStorage.removeItem("authUser");
-	};
+  const logout = () => {
+    isLoggedIn.value = false;
+    user.value = null;
+    localStorage.removeItem("authUser");
+  };
 
-	const init = () => {
-		const storedUser = localStorage.getItem("authUser");
-		if (storedUser) {
-			user.value = JSON.parse(storedUser);
-			isLoggedIn.value = true;
-		}
-	};
+  const init = () => {
+    const storedUser = localStorage.getItem("authUser");
+    if (storedUser) {
+      user.value = JSON.parse(storedUser);
+      isLoggedIn.value = true;
+    }
+  };
 
-	return { isLoggedIn, user, login, logout, init };
-// Spara valt hotel (+ land, stad, bild)
-export const useSelectedHotelStore = defineStore("selectedHotel", () => {
-  const hotel = ref(null);
+  return { isLoggedIn, user, login, logout, init };
 
-  function setHotel(data) {
-    hotel.value = data;
-  }
-
-  return { hotel, setHotel };
 });
+
+  // Spara valt hotel (+ land, stad, bild)
+  export const useSelectedHotelStore = defineStore("selectedHotel", () => {
+    const hotel = ref(null);
+
+    function setHotel(data) {
+      hotel.value = data;
+    }
+
+    return { hotel, setHotel };
+  });
