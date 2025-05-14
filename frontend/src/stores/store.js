@@ -205,4 +205,13 @@ export const useAuthStore = defineStore("auth", () => {
 	};
 
 	return { isLoggedIn, user, login, logout, init };
+// Spara valt hotel (+ land, stad, bild)
+export const useSelectedHotelStore = defineStore("selectedHotel", () => {
+  const hotel = ref(null);
+
+  function setHotel(data) {
+    hotel.value = data;
+  }
+
+  return { hotel, setHotel };
 });
