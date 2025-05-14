@@ -108,7 +108,6 @@ async function loggaIn() {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	/* justify-content: center; */
 	align-items: center;
 	margin-top: 10px;
 	margin-bottom: 10px;

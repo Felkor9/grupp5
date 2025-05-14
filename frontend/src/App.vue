@@ -32,12 +32,6 @@ body {
 	height: 100%;
 }
 
-/* header {
-	margin: 0;
-	padding: 0;
-	height: fit-content;
-} */
-
 .layout {
 	min-height: 100vh;
 	display: flex;
