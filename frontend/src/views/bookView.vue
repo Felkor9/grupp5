@@ -1,57 +1,67 @@
 <template>
-  <h2>Boka</h2>
-
-  <div class="calendar-wrapper">
-    <div class="calendar">
-      <div class="calendar-header">
-        <span class="month-nav" @click="changeMonth(-1)">&lt;</span>
-        <span class="month-year"
-          >{{ monthNames[currentMonth] }} {{ currentYear }}</span
-        >
-        <span class="month-nav" @click="changeMonth(1)">&gt;</span>
-      </div>
-
-      <div class="calendar-body">
-        <div class="calendar-week-days">
-          <div v-for="day in weekDays" :key="day">{{ day }}</div>
-        </div>
-        <div class="calendar-days">
-          <div
-            v-for="(day, index) in calendarDays"
-            :key="index"
-            :class="{
-              'current-date': day.isToday,
-              'selected-date':
-                selectedDate &&
-                selectedDate.getDate() === day.value &&
-                selectedDate.getMonth() === currentMonth &&
-                selectedDate.getFullYear() === currentYear,
-            }"
-            @click="selectDate(day)"
+  <section>
+    <div class="container-heading">
+      <h2>Boka</h2>
+      <button @click="goBack" class="goBackButton">
+        <img src="../assets/arrowback.svg" alt="Back arrow" class="icon" />
+      </button>
+    </div>
+    <div class="calendar-wrapper">
+      <div class="calendar">
+        <div class="calendar-header">
+          <span class="month-nav" @click="changeMonth(-1)">&lt;</span>
+          <span class="month-year"
+            >{{ monthNames[currentMonth] }} {{ currentYear }}</span
           >
-            {{ day.value }}
+          <span class="month-nav" @click="changeMonth(1)">&gt;</span>
+        </div>
+
+        <div class="calendar-body">
+          <div class="calendar-week-days">
+            <div v-for="day in weekDays" :key="day">{{ day }}</div>
+          </div>
+          <div class="calendar-days">
+            <div
+              v-for="(day, index) in calendarDays"
+              :key="index"
+              :class="{
+                'current-date': day.isToday,
+                'selected-date':
+                  selectedDate &&
+                  selectedDate.getDate() === day.value &&
+                  selectedDate.getMonth() === currentMonth &&
+                  selectedDate.getFullYear() === currentYear,
+              }"
+              @click="selectDate(day)"
+            >
+              {{ day.value }}
+            </div>
           </div>
         </div>
-      </div>
-      <div class="person-selector">
-        <label for="people">Antal personer: </label>
-        <select id="people" v-model="selectedPeople">
-          <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
-        </select>
-      </div>
-      <div v-if="selectedDate && selectedPeople" class="selected-date-display">
-        Du har valt:<br />
-        {{ formattedSelectedDate }}<br />
-        för {{ selectedPeople }} person<span v-if="selectedPeople > 1">er</span
-        >.
-      </div>
-      <div class="booking-button-wrapper">
-        <button @click="läggTillBokning" :disabled="!selectedDate">
-          Lägg till bokning
-        </button>
+        <div class="person-selector">
+          <label for="people">Antal personer: </label>
+          <select id="people" v-model="selectedPeople">
+            <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
+          </select>
+        </div>
+        <div
+          v-if="selectedDate && selectedPeople"
+          class="selected-date-display"
+        >
+          Du har valt:<br />
+          {{ formattedSelectedDate }}<br />
+          för {{ selectedPeople }} person<span v-if="selectedPeople > 1"
+            >er</span
+          >.
+        </div>
+        <div class="booking-button-wrapper">
+          <button @click="läggTillBokning" :disabled="!selectedDate">
+            Lägg till bokning
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
@@ -209,15 +219,44 @@ onMounted(() => {
 </script>
 
 <style scoped>
+section {
+  padding: 2rem 1rem;
+  background: linear-gradient(to bottom, #f0f4f8, #e2e8f0);
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.container-heading {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+}
+
+.goBackButton {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 15%;
+  left: 0;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
 h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  font-size: 1.75rem;
+  margin-bottom: 1.25rem;
   color: #1e3a8a;
   text-align: center;
   font-weight: 700;
-  letter-spacing: 1px;
-  padding-top: 2rem;
-  font-family: "Segoe UI", sans-serif;
+  letter-spacing: 0.5px;
 }
 
 .calendar-wrapper {

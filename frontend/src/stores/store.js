@@ -174,3 +174,14 @@ export const useSelectedDateStore = defineStore("selectedDate", () => {
     loadFromStorage,
   };
 });
+
+// Spara valt hotel (+ land, stad, bild)
+export const useSelectedHotelStore = defineStore("selectedHotel", () => {
+  const hotel = ref(null);
+
+  function setHotel(data) {
+    hotel.value = data;
+  }
+
+  return { hotel, setHotel };
+});
