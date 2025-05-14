@@ -9,6 +9,9 @@
 			<label for="datum" class="label">Datum: YYYY-MM-DD</label>
 			<input v-model="datum" type="date" id="datum" name="datum" required />
 
+			<label>Betyg:</label>
+			<StarRating :star-size="30" :show-rating="false" v-model:rating="rating" class="star" />
+
 			<label for="recension1" class="label">Skriv din recension här:</label>
 			<textarea
 				v-model="recension1"
@@ -36,6 +39,7 @@ import { ref, onMounted } from "vue";
 import { useRecensionerStore } from "../stores/store";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
+import StarRating from "vue-star-rating";
 
 const router = useRouter();
 const store = useRecensionerStore();
@@ -49,6 +53,7 @@ const recension1 = ref("");
 const recension2 = ref("");
 const visaFormular = ref(false);
 const läggTillRecension = ref(false);
+const rating = ref(null);
 
 function toggleFormular() {
 	router.back();
@@ -67,6 +72,7 @@ const fetchRecensioner = async () => {
 		console.error("Fel vid hämtning:", error);
 	}
 };
+console.log("Rating skickas:", rating.value);
 
 const submitForm = async () => {
 	try {
@@ -76,6 +82,7 @@ const submitForm = async () => {
 			body: JSON.stringify({
 				namn: namn.value,
 				datum: datum.value,
+				betyg: rating.value,
 				recensioner: [recension1.value, recension2.value],
 			}),
 		});
@@ -169,7 +176,6 @@ textarea:focus {
 	position: relative;
 	width: 100vw;
 	height: 20vh;
-	/* background-color: green; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -186,9 +192,7 @@ textarea:focus {
 	border-radius: 100%;
 	border: 1px solid black;
 	cursor: pointer;
-	/* margin: 1rem; */
 	box-shadow: 0.1px 0.1px 0.4em rgb(185, 185, 185);
-	/* margin: 30px; */
 }
 
 .addrec {

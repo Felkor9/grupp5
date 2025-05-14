@@ -1,12 +1,14 @@
 const bokningService = require("./../services/bokningarService");
 
 exports.getFullBookingByUser = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params; // Ta emot ID från URL-parametrar
+
   try {
-    const bokningar = await bokningService.getFullBookingByUser(id);
+    const bokningar = await bokningService.getFullBookingByUser(id);  // Hämta bokningar från DB
     console.log("Bokningar från DB:", bokningar);
-    res.json({ bokning: bokningar });
+    res.json({ bokning: bokningar });  // Skicka tillbaka bokningarna till frontend
   } catch (error) {
+    console.error("Fel vid hämtning av bokningar:", error);
     return res.status(500).json({
       error: error.message,
     });

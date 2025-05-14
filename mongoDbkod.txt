@@ -4,10 +4,13 @@ db.authors.insertOne(
 {
     namn: "Felix Korshavn",
     datum: 250430,
+    betyg:4,
     recensioner: [
-        "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
-    ]
+"Sparta Team Hotel är ett budgethotell beläget centralt i Aten, inte långt från Omonia-torget. Hotellet har ett bra läge om du vill ha nära till tunnelbana, sevärdheter och stadens puls. Sparta Team Hotel passar dig som har en väldigt tight budget och inte har höga krav på komfort eller miljö. Det fungerar okej för en eller två nätter om du mest är ute på stan och bara behöver en plats att sova. Men om du prioriterar trygghet och trivsel kan det vara värt att lägga lite mer pengar på ett annat hotell"    ]
 }
 )
-
 db.authors.find()
+
+db.users.find()
+
+db.authors.drop()

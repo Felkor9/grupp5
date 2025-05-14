@@ -4,9 +4,6 @@
 			<div class="logo-icon">✈️</div>
 			<h1 class="logo-text">FEEL</h1>
 		</router-link>
-		<!-- <div class="icon-container">
-			<img src="../assets/user.svg" alt="" class="usericon" />
-		</div> -->
 	</header>
 </template>
 
@@ -43,20 +40,6 @@
 	color: white;
 	text-shadow: 0 0 5px #60a5fa;
 }
-
-/* .icon-container {
-	position: relative;
-}
-
-.usericon {
-	width: 30px;
-	height: 30px;
-	position: absolute;
-	right: 0;
-	top: 0;
-	margin-top: -30px;
-	margin-right: 10px;
-} */
 
 .logo-text {
 	font-size: 2.5rem;

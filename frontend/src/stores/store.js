@@ -106,32 +106,35 @@ export const useResaDestinationStore = defineStore("resadestination", () => {
   return { resadestination, fetchResaDestination, resordestinationer };
 });
 
-//  function fetchResaDestination(id) {
-//     fetch(`http://localhost:3000/resadestination/${id}`)
-//       .then((result) => result.json())
-//       .then((data) => {
-//         resor.value = data.resor || [];
-//         console.log(data.resor);
-//         // console.log(data.resadestination);
-//       });
-//   }
-//   return { resadestination, fetchResaDestination, resordestinationer };
-// });
 
 //Visa bokningar på vald user
 export const useBookingByUserStore = defineStore("bookingByUser", () => {
   const bokningar = ref([]);
   const error = ref(null);
+  const userId = ref(null)
 
   function getFullBookingByUser(userId) {
+    console.log("Hämtar bokningar för userId:", userId);
     fetch(`http://localhost:3000/bokningar/full/${userId}`)
-      .then((result) => result.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Fel från servern: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((data) => {
-        bokningar.value = data.bokningar || [];
+
+        bokningar.value = data.bokning || [];
         console.log("Bokningar hämtade:", bokningar.value);
         error.value = null;
+      })
+      .catch((err) => {
+        console.error("Fel vid hämtning av bokningar:", err);
+        error.value = err.message;
+        bokningar.value = [];
       });
   }
+
   return { bokningar, getFullBookingByUser, error };
 });
 

@@ -2,6 +2,7 @@
 import { useRecensionerStore } from "../stores/store";
 import { storeToRefs } from "pinia";
 import { onMounted, ref } from "vue";
+import StarRating from "vue-star-rating";
 
 const store = useRecensionerStore();
 const { recensioner } = storeToRefs(store);
@@ -72,6 +73,12 @@ onMounted(fetchrecensioner);
 		<ul>
 			<li class="lista-recensioner" v-for="recension in recensioner" :key="recension.id">
 				<strong>{{ recension.namn }}</strong>
+				<StarRating
+					:rating="recension.betyg"
+					:read-only="true"
+					:star-size="24"
+					:show-rating="false"
+					class="stars" />
 				<div v-for="(rec, index) in recension.recensioner" :key="index">
 					<p>{{ rec }}</p>
 				</div>
@@ -108,6 +115,11 @@ ul {
 	list-style-type: none;
 }
 
+.stars {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 .lista-recensioner {
 	background-color: white;
 	border-radius: 8px;
@@ -117,12 +129,10 @@ ul {
 	z-index: 1;
 }
 .div-button {
-	/* background-color: green; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	/* height: 20vh; */
 }
 
 .add-button {
@@ -135,7 +145,6 @@ ul {
 	font-size: 0.8rem;
 	font-weight: 600;
 	text-align: center;
-	/* margin-top: 1rem; */
 	transition: background-color 0.2s ease;
 	width: 100%;
 	display: flex;
@@ -155,7 +164,6 @@ img {
 }
 
 .recension-form {
-	/* position: absolute; */
 	transform: translateX(-50%);
 	z-index: 10;
 }
