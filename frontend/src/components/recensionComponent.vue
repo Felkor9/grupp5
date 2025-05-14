@@ -117,12 +117,10 @@ ul {
 	z-index: 1;
 }
 .div-button {
-	/* background-color: green; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	/* height: 20vh; */
 }
 
 .add-button {
@@ -135,7 +133,6 @@ ul {
 	font-size: 0.8rem;
 	font-weight: 600;
 	text-align: center;
-	/* margin-top: 1rem; */
 	transition: background-color 0.2s ease;
 	width: 100%;
 	display: flex;
@@ -155,7 +152,6 @@ img {
 }
 
 .recension-form {
-	/* position: absolute; */
 	transform: translateX(-50%);
 	z-index: 10;
 }

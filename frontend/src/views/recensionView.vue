@@ -169,7 +169,6 @@ textarea:focus {
 	position: relative;
 	width: 100vw;
 	height: 20vh;
-	/* background-color: green; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -186,9 +185,7 @@ textarea:focus {
 	border-radius: 100%;
 	border: 1px solid black;
 	cursor: pointer;
-	/* margin: 1rem; */
 	box-shadow: 0.1px 0.1px 0.4em rgb(185, 185, 185);
-	/* margin: 30px; */
 }
 
 .addrec {

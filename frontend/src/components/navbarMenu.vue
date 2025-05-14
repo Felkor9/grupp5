@@ -24,7 +24,6 @@
 
 .nav-lista {
 	width: 100vw;
-	/* height: 50px; */
 	margin: 0;
 	padding: 0;
 	justify-content: center;
@@ -39,7 +38,6 @@
 	align-items: center;
 	justify-content: space-around;
 	margin: 10px;
-	/* background-color: rgb(254, 254, 254); */
 	width: 100vw;
 	height: 45px;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;

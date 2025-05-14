@@ -9,12 +9,6 @@
 			</div>
 			<div class="list-item">
 				<router-link class="router" to="/profile">
-					<img src="../assets/saved.svg" alt="" class="icon-menubar" />
-				</router-link>
-				<router-link class="router" to="/profile">Sparade</router-link>
-			</div>
-			<div class="list-item">
-				<router-link class="router" to="/profile">
 					<img src="../assets/bokningar.svg" alt="" class="icon-menubar" />
 				</router-link>
 				<router-link class="router" to="/profile">Bokningar</router-link>

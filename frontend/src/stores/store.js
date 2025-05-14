@@ -107,18 +107,6 @@ export const useResaDestinationStore = defineStore("resadestination", () => {
 });
 
 
-//  function fetchResaDestination(id) {
-//     fetch(`http://localhost:3000/resadestination/${id}`)
-//       .then((result) => result.json())
-//       .then((data) => {
-//         resor.value = data.resor || [];
-//         console.log(data.resor);
-//         // console.log(data.resadestination);
-//       });
-//   }
-//   return { resadestination, fetchResaDestination, resordestinationer };
-// });
-
 //Visa bokningar på vald user
 export const useBookingByUserStore = defineStore("bookingByUser", () => {
   const bokningar = ref([]);
