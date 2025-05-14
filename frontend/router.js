@@ -21,7 +21,7 @@ const routes = [
   },
   // { path: "/bokningar", name: "bookingView", component: bookingView },
   {
-    path: "/bokningar/:id",
+    path: "/bokningar/:userId",
     name: "bookingView",
     component: bookingView,
     props: true,

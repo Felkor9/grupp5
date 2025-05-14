@@ -6,6 +6,7 @@ function getFullBookingByUser(bokningUserId) {
     let sql = `
       SELECT
         b.bokningId,
+        b.bokningAntalPlatser,
         d.destinationHotell,
         d.destinationStad,
         r.resorLand,
