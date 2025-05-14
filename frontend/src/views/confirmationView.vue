@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { useSelectedHotelStore, useSelectedDateStore } from "@/stores/store";
+import { useSelectedHotelStore, useSelectedDateStore } from "../stores/store";
 import { onMounted, computed } from "vue";
 import { useRouter } from "vue-router";
 
