@@ -7,7 +7,7 @@ import destinationView from "./src/views/destinationView.vue";
 import loginView from "./src/views/loginView.vue";
 import bookingView from "./src/views/bookingView.vue";
 import recensionView from "./src/views/recensionView.vue";
-import BookView from "./src/views/bookView.vue";
+import bookView from "./src/views/bookView.vue";
 
 const routes = [
   { path: "/home", name: "homeView", component: homeView },
@@ -41,10 +41,9 @@ const routes = [
 
   {
     path: "/book",
-    name: "Book",
-    component: BookView,
+    name: "book",
+    component: bookView,
   },
-
 ];
 
 const router = createRouter({

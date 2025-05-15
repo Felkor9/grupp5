@@ -54,11 +54,15 @@
             >er</span
           >.
         </div>
-        <div class="booking-button-wrapper">
-          <button @click="läggTillBokning" :disabled="!selectedDate">
-            Lägg till bokning
-          </button>
-        </div>
+
+        <router-link
+          v-if="selectedDate"
+          class="bokning-knapp"
+          :to="{ name: 'homeView' }"
+          @click="bokaOchNavigera"
+        >
+          Boka resa
+        </router-link>
       </div>
     </div>
   </section>
@@ -66,7 +70,14 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue";
-import { useSelectedDateStore } from "../stores/store";
+import {
+  useSelectedDateStore,
+  useSelectedHotelStore,
+  useBokningarStore,
+} from "../stores/store";
+import { useRouter, useRoute } from "vue-router";
+const router = useRouter();
+const route = useRoute();
 
 const weekDays = ["Mån", "Tis", "Ons", "Tors", "Fre", "Lör", "Sön"];
 const monthNames = [
@@ -90,8 +101,6 @@ const currentYear = ref(currentDate.getFullYear());
 const selectedDate = ref(null);
 const selectedPeople = ref(1);
 const calendarDays = ref([]);
-
-const dateStore = useSelectedDateStore();
 
 const isLeapYear = (year) =>
   (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
@@ -169,18 +178,6 @@ const selectDate = (day) => {
   }
 };
 
-const läggTillBokning = () => {
-  if (!selectedDate.value || !selectedPeople.value) return;
-
-  dateStore.setDate(selectedDate.value);
-  dateStore.setNumberOfPeople(selectedPeople.value);
-
-  console.log("Bokning sparad i store:", {
-    datum: selectedDate.value,
-    personer: selectedPeople.value,
-  });
-};
-
 const formattedSelectedDate = computed(() => {
   if (!selectedDate.value) return "";
 
@@ -216,6 +213,23 @@ onMounted(() => {
     selectedPeople.value = dateStore.numberOfPeople;
   }
 });
+
+const goBack = () => {
+  router.back();
+};
+
+const dateStore = useSelectedDateStore();
+
+const bokaOchNavigera = () => {
+  if (!selectedDate.value || !selectedPeople.value) return;
+
+  // Uppdatera Pinia
+  dateStore.setDate(selectedDate.value);
+  dateStore.setNumberOfPeople(selectedPeople.value);
+
+  // Navigera
+  router.push({ name: "homeView" });
+};
 </script>
 
 <style scoped>
@@ -367,29 +381,24 @@ select {
   border: 1px solid #ccc;
 }
 
-.booking-button-wrapper {
-  margin-top: 45px;
-  text-align: center;
-}
-
-.booking-button-wrapper button {
-  padding: 10px 20px;
-  background-color: #2563eb;
+.bokning-knapp {
+  background-color: #007bff;
   color: white;
-  font-weight: bold;
-  font-size: 1rem;
+  padding: 0.75em 1.5em;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease;
+  margin: 1rem auto;
+  display: block;
+  margin-top: 2rem;
 }
-
-.booking-button-wrapper button:disabled {
-  background-color: #9ca3af; /* grå */
-  cursor: not-allowed;
-}
-
-.booking-button-wrapper button:hover:not(:disabled) {
-  background-color: #1e3a8a;
+.bokning-knapp:hover {
+  background-color: #1e40af;
 }
 </style>

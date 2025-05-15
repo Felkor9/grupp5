@@ -106,12 +106,11 @@ export const useResaDestinationStore = defineStore("resadestination", () => {
   return { resadestination, fetchResaDestination, resordestinationer };
 });
 
-
 //Visa bokningar på vald user
 export const useBookingByUserStore = defineStore("bookingByUser", () => {
   const bokningar = ref([]);
   const error = ref(null);
-  const userId = ref(null)
+  const userId = ref(null);
 
   function getFullBookingByUser(userId) {
     console.log("Hämtar bokningar för userId:", userId);
@@ -123,7 +122,6 @@ export const useBookingByUserStore = defineStore("bookingByUser", () => {
         return res.json();
       })
       .then((data) => {
-
         bokningar.value = data.bokning || [];
         console.log("Bokningar hämtade:", bokningar.value);
         error.value = null;
