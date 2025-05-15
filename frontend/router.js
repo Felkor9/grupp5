@@ -8,7 +8,6 @@ import loginView from "./src/views/loginView.vue";
 import bookingView from "./src/views/bookingView.vue";
 import recensionView from "./src/views/recensionView.vue";
 import bookView from "./src/views/bookView.vue";
-import confirmationView from "./src/views/confirmationView.vue";
 
 const routes = [
   { path: "/home", name: "homeView", component: homeView },
@@ -44,12 +43,6 @@ const routes = [
     path: "/book",
     name: "book",
     component: bookView,
-  },
-
-  {
-    path: "/confirm",
-    name: "confirm",
-    component: confirmationView,
   },
 ];
 
